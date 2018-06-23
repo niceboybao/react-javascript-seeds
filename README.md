@@ -1,2 +1,2 @@
 # react-resource-blogs
-master master
+develop02
