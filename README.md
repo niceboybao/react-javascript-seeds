@@ -1,2 +1,3 @@
 # react-resource-blogs
-master master
+
+这是master分支的代码
