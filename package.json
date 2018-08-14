@@ -1,33 +1,32 @@
 {
-  "name": "react-redux-webpack",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1",
-	"build-dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
-    "build-prod": "NODE_ENV=production webpack --config ./webpack.config.js --progress"
-  },
-  "keywords": [
-    "react",
-    "redux",
-    "webpack"
-  ],
-  "author": "guangwei.bao",
-  "license": "MTI",
-  "devDependencies": {
-    "react": "^16.4.2",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.3.1",
-    "react-router-redux": "^5.0.0-alpha.6",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0",
-    "webpack": "^2.6.0"
-  },
-  "dependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/niceboybao/react-javascript-seeds.git",
-    "private": true
-  }
+	"name": "react-redux-webpack",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build-dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+		"build-prod": "NODE_ENV=production webpack --config ./webpack.config.js --progress",
+
+		"start": "webpack-dev-server --hot --progress --colors",
+		"build": "webpack --progress --colors"
+	},
+	"keywords": [ "react", "redux", "webpack" ],
+	"author": "guangwei.bao",
+	"license": "MTI",
+	"devDependencies": {
+		"react": "^16.4.2",
+		"react-redux": "^5.0.7",
+		"react-router": "^4.3.1",
+		"react-router-redux": "^5.0.0-alpha.6",
+		"redux": "^4.0.0",
+		"redux-thunk": "^2.3.0",
+		"webpack": "^2.6.0"
+	},
+	"dependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/niceboybao/react-javascript-seeds.git",
+		"private": true
+	}
 }
