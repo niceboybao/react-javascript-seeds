@@ -1,1 +1,1 @@
-log('log');
+document.write('<div>1234ß</div>');

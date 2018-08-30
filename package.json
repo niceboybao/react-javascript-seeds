@@ -8,6 +8,7 @@
 	"license": "MTI",
 	"devDependencies": {
 		"cross-env": "^5.2.0",
+		"html-webpack-plugin": "^3.2.0",
 		"react": "^16.4.2",
 		"react-redux": "^5.0.7",
 		"react-router": "^4.3.1",
@@ -22,10 +23,12 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf www/*",
-		"build": "webpack --progress --colors",
+		"build": "webpack --progress --colors --mode development",
 		"build-test": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.test.js",
 		"build-dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.dev.js",
-		"build-prod": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.prod.js"
+		"build-prod": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.prod.js",
+		"dev": "webpack-dev-server --mode development",
+		"dev-test": " cross-env NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.config.test.js "
 	},
 	"repository": {
 		"type": "git",
