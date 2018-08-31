@@ -2,7 +2,7 @@
  * @Author: Baldwin 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-08-31 16:22:43
+ * @Last Modified time: 2018-08-31 18:02:02
  * @Describe: 测试环境打包配置项
  * [可参考]深入浅出 Webpack小册：http://webpack.wuhaolin.cn/  
  */
@@ -12,7 +12,7 @@
 const webpack = require('webpack');
 // path 模块提供了一些工具函数，用于处理文件与目录的路径
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //dev 开发环境变量
 const DEV_ENV = require('../config/dev.env.js');
