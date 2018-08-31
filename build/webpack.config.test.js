@@ -2,7 +2,7 @@
  * @Author: Baldwin 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-08-30 20:08:43
+ * @Last Modified time: 2018-08-31 16:22:43
  * @Describe: 测试环境打包配置项
  * [可参考]深入浅出 Webpack小册：http://webpack.wuhaolin.cn/  
  */
@@ -12,7 +12,7 @@
 const webpack = require('webpack');
 // path 模块提供了一些工具函数，用于处理文件与目录的路径
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 //dev 开发环境变量
 const DEV_ENV = require('../config/dev.env.js');
@@ -34,7 +34,7 @@ const webpackConfig = {
 		// 这里是项目输出的路径,__dirname表示当前文件的位置,输出文件都放到 dist 目录下
 		path: path.resolve(__dirname, '../www'),
 		// 把所有依赖的模块合并输出到一个 [hash].[name].js 文件,这里是生成文件的名称，可起你想要的名字
-		filename: 'js/[name]_[hash:8].js',
+		filename: '[name]/[hash].js',
 		/*
 		* 在复杂的项目里可能会有一些构建出的资源需要异步加载，加载这些异步资源需要对应的 URL 地址。
 		配置发布到线上资源的 URL 前缀，为string 类型。 默认值是空字符串 ''，即使用相对路径。
@@ -125,9 +125,28 @@ const webpackConfig = {
 
 	/*
 	* 配置 devServer
+	它提供了一些配置项可以改变 DevServer 的默认行为。 要配置 DevServer ，除了在配置文件里通过 devServer 传入参数外，
+	还可以通过命令行参数传入。 注意只有在通过 DevServer 去启动 Webpack 时配置文件里 devServer 才会生效，
+	因为这些参数所对应的功能都是 DevServer 提供的，Webpack 本身并不认识 devServer 配置项。
 	*/
 	devServer: {
-		historyApiFallback: true,
+		// 要求服务器在针对任何命中的路由时都返回到 HTML 文件
+		historyApiFallback: {
+			// 使用正则匹配命中路由
+			rewrites: [
+				// /user 开头的都返回 user.html
+				{ from: /^\/share/, to: '/share.html' },
+				{ from: /^\/www/, to: '/index.html' },
+				// 其它的都返回 index.html
+				{ from: /./, to: '/error.html' }
+			]
+		},
+		hot: false, // 是否开启模块热替换功能
+		port: 8384, //端口
+		open: true, // 启用open后，开发服务器会打开浏览器。
+		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
+		allowedHosts: [ 'niceboybao.cn' ],
+		openPage: 'www/',
 		contentBase: path.join(__dirname, '../www')
 	},
 
@@ -140,9 +159,22 @@ const webpackConfig = {
 	* 扩展插件，在 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。
 	*/
 	plugins: [
+		/*
+		* HtmlWebpackPlugin 简化了HTML文件的创建，以便为你的webpack包提供服务。这对于在文件名中包含每次
+		会随着编译而发生变化哈希的 webpack bundle 尤其有用。 你可以让插件为你生成一个HTML文件
+		*/
+		// 创建默认的index.html 文件
 		new HtmlWebpackPlugin({
+			title: 'webpack test page', // 模本文件标题
 			filename: 'index.html', //配置输出文件名
-			template: path.resolve(__dirname, '../src/index.html') //模板文件路径，支持加载器
+			template: path.resolve(__dirname, '../src/index.html'), //模板文件路径，支持加载器
+			minify: true
+		}),
+		// 创建share.html 文件
+		new HtmlWebpackPlugin({
+			title: 'share test page', // 模本文件标题
+			filename: 'share.html', //配置输出文件名
+			template: path.resolve(__dirname, '../src/share.html') //模板文件路径，支持加载器
 		}),
 		//Webpack 首先从配置文件中读取这个值，然后注入
 		new webpack.DefinePlugin({

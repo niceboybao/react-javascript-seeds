@@ -33,10 +33,10 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf www/*",
 		"build": "webpack --progress --colors --mode development",
-		"build-test": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.test.js",
+		"build-test": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --color --config ./build/webpack.config.test.js",
 		"build-dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.dev.js",
 		"build-prod": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.prod.js",
-		"dev": "webpack-dev-server --mode development",
+		"dev": "webpack-dev-server --hot --devtool source-map --mode development --open 'Google Chrome' --progres --color",
 		"dev-test": " cross-env NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.config.test.js ",
 		"start": "npm run clean && npm run build-test && npm run dev-test"
 	},

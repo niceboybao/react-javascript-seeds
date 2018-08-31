@@ -2,13 +2,15 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-30 20:09:25 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-08-30 20:09:52
+ * @Last Modified time: 2018-08-31 14:27:50
  * @Describe: 工程配置文件
+ */
+'use strict';
 
 //开发环境变量
 const NODE_ENV = process.env.NODE_ENV;
-/* 获取webpack publicPath */
-getWebpackpublicPath = () => {
+// 获取webpack publicPath
+const getWebpackpublicPath = () => {
 	const urlObj = {
 		development: '/',
 		// development: 'https://cdn.example.com/assets/',
