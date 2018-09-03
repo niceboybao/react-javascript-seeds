@@ -11,11 +11,15 @@
 	"author": "guangwei.bao",
 	"license": "MTI",
 	"devDependencies": {
-		"babel-loader": "^8.0.0",
+		"babel-core": "6.26.0",
+		"babel-loader": "7.1.1",
+		"babel-preset-env": "^1.3.2",
 		"cross-env": "^5.2.0",
 		"css-loader": "^1.0.0",
+		"extract-text-webpack-plugin": "^4.0.0-beta.0",
 		"file-loader": "^2.0.0",
 		"html-webpack-plugin": "^3.2.0",
+		"node-sass": "^4.9.3",
 		"react": "^16.4.2",
 		"react-redux": "^5.0.7",
 		"react-router": "^4.3.1",
@@ -24,6 +28,7 @@
 		"redux-thunk": "^2.3.0",
 		"sass-loader": "^7.1.0",
 		"style-loader": "^0.23.0",
+		"url-loader": "^1.1.1",
 		"webpack": "^4.17.0",
 		"webpack-cli": "^3.1.0",
 		"webpack-dev-server": "^3.1.5"
@@ -33,11 +38,11 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf www/*",
 		"build": "webpack --progress --colors --mode development",
-		"build-test": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --color --config ./build/webpack.config.test.js",
+		"build-test": "cross-env NODE_ENV=development node_modules/.bin/webpack --progress --color --config ./build/webpack.config.test.js",
 		"build-dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.dev.js",
 		"build-prod": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --colors --config ./build/webpack.config.prod.js",
 		"dev": "webpack-dev-server --hot --devtool source-map --mode development --open 'Google Chrome' --progres --color",
-		"dev-test": " cross-env NODE_ENV=development node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./build/webpack.config.test.js ",
+		"dev-test": " cross-env NODE_ENV=development node node_modules/.bin/webpack-dev-server --config ./build/webpack.config.test.js ",
 		"start": "npm run clean && npm run build-test && npm run dev-test"
 	},
 	"repository": {
