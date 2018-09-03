@@ -2,18 +2,17 @@
  * @Author: Baldwin 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-08-31 18:02:02
+ * @Last Modified time: 2018-09-03 23:23:32
  * @Describe: 测试环境打包配置项
  * [可参考]深入浅出 Webpack小册：http://webpack.wuhaolin.cn/  
  */
 'use strict';
 
-// webpack
-const webpack = require('webpack');
 // path 模块提供了一些工具函数，用于处理文件与目录的路径
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 //dev 开发环境变量
 const DEV_ENV = require('../config/dev.env.js');
 //import config resource
@@ -34,7 +33,7 @@ const webpackConfig = {
 		// 这里是项目输出的路径,__dirname表示当前文件的位置,输出文件都放到 dist 目录下
 		path: path.resolve(__dirname, '../www'),
 		// 把所有依赖的模块合并输出到一个 [hash].[name].js 文件,这里是生成文件的名称，可起你想要的名字
-		filename: '[name]/[hash].js',
+		filename: 'script/[name]_[hash:12].js',
 		/*
 		* 在复杂的项目里可能会有一些构建出的资源需要异步加载，加载这些异步资源需要对应的 URL 地址。
 		配置发布到线上资源的 URL 前缀，为string 类型。 默认值是空字符串 ''，即使用相对路径。
@@ -59,57 +58,80 @@ const webpackConfig = {
 	module: {
 		// module.rules 数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换。
 		rules: [
+			// 该 loader 转换的 JavaScript 文件
 			{
-				// 用正则去匹配要用该 loader 转换的 CSS 文件
-				// test include exclude 这三个命中文件的配置项只传入了一个字符串或正则，其实它们还都支持数组类型
-				test: /\.css$/,
-				// 只命中src目录里的js文件，加快 Webpack 搜索速度
-				include: path.resolve(__dirname, '../src'),
-				// 排除 node_modules 目录下的文件
-				exclude: [ path.resolve(__dirname, '../node_modules'), path.resolve(__dirname, '../bower_modules') ],
-				// use: [ 'style-loader', 'css-loader?minimize' ]
-				use: [
-					{ loader: 'style-loader' },
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true,
-							minimize: true //开启 CSS 压缩
-						}
-					}
-				],
-				// 'post'把该 Loader 的执行顺序放到最后,'pre'放到最前
-				enforce: 'post'
-			},
-			{
-				// 用正则去匹配要用该 loader 转换的 JavaScript 文件
-				test: /\.jss$/,
+				test: /\.js$/,
+				exclude: /node_modules/,
 				// 用 babel-loader 转换 JavaScript 文件
 				// ?cacheDirectory 表示传给 babel-loader 的参数，用于缓存 babel 编译结果加快重新编译速度
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
+							// presets: ['env']
 							cacheDirectory: false
 						}
 					}
-				],
+				]
 				// 只命中src目录里的js文件，加快 Webpack 搜索速度
-				include: path.resolve(__dirname, '../src')
+				// include: path.resolve(__dirname, '../src')
 			},
+			// 用该 loader 转换的 CSS 文件
 			{
-				// 用正则去匹配要用该 loader 转换的 SCSS 文件
-				test: /\.scss$/,
-				// 使用一组 Loader 去处理 SCSS 文件。
-				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
-				use: [ 'style-loader', 'css-loader', 'sass-loader' ],
+				// test include exclude 这三个命中文件的配置项只传入了一个字符串或正则，其实它们还都支持数组类型
+				test: /\.css$/,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				// include: path.resolve(__dirname, '../src'),
 				// 排除 node_modules 目录下的文件
-				exclude: path.resolve(__dirname, '../node_modules')
+				// exclude: path.resolve(__dirname, '../node_modules'),
+				// use: [ 'style-loader', 'css-loader?minimize' ]
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader'
+				})
+				// 'post'把该 Loader 的执行顺序放到最后,'pre'放到最前
+				// enforce: 'post'
 			},
+			// 用该 loader 转换的 SCSS 文件
+			{
+				test: /\.scss$/,
+				// 排除 node_modules 目录下的文件
+				exclude: path.resolve(__dirname, '../node_modules'),
+				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [ 'css-loader', 'sass-loader' ]
+				})
+			},
+			// 用该 loader 配置图片
 			{
 				// 对非文本文件采用 file-loader 加载
-				test: /\.(gif|png|jpe?g|eot|woff|ttf|svg|pdf)$/,
-				use: [ 'file-loader' ]
+				// test: /\.(gif|png|jpe?g|eot|woff|ttf|svg|pdf)$/,
+				test: /\.(png|jpg|jpe?g|gif)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192, //内联文件的字节限制为数据URL
+							outputPath: 'images/', // 输出目录
+							name: '[name]_[hash:12].[ext]' //自定义文件名
+						}
+					}
+				]
+				// use: [ 'file-loader' ]
+			},
+			// 用该 loader 配置字体图标
+			{
+				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192, //内联文件的字节限制为数据URL
+							name: 'font/[name]_[hash:12].[ext]' //自定义文件名
+						}
+					}
+				]
 			}
 		]
 	},
@@ -146,8 +168,9 @@ const webpackConfig = {
 		open: true, // 启用open后，开发服务器会打开浏览器。
 		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
 		allowedHosts: [ 'niceboybao.cn' ],
-		openPage: 'www/',
-		contentBase: path.join(__dirname, '../www')
+		openPage: 'www/'
+		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
+		// contentBase: path.join(__dirname, '../www')
 	},
 
 	/*
@@ -165,20 +188,47 @@ const webpackConfig = {
 		*/
 		// 创建默认的index.html 文件
 		new HtmlWebpackPlugin({
-			title: 'webpack test page', // 模本文件标题
+			title: 'webpack test page webpack test page', // 模本文件标题
 			filename: 'index.html', //配置输出文件名
+			// favicon:'../favicon.ico' ,
 			template: path.resolve(__dirname, '../src/index.html'), //模板文件路径，支持加载器
 			minify: true
+			// inject: 'head', //是否将所有资产注入给定template
 		}),
 		// 创建share.html 文件
 		new HtmlWebpackPlugin({
 			title: 'share test page', // 模本文件标题
 			filename: 'share.html', //配置输出文件名
+			inject: false, //是否将所有资产注入给定template
 			template: path.resolve(__dirname, '../src/share.html') //模板文件路径，支持加载器
+		}),
+		// 创建error.html 文件
+		new HtmlWebpackPlugin({
+			title: '404 test page', // 模本文件标题
+			filename: 'error.html', //配置输出文件名
+			inject: false, //是否将所有资产注入给定template
+			template: path.resolve(__dirname, '../src/error.html') //模板文件路径，支持加载器
 		}),
 		//Webpack 首先从配置文件中读取这个值，然后注入
 		new webpack.DefinePlugin({
 			'process.env': DEV_ENV
+		}),
+		new ExtractTextPlugin({
+			filename: 'css/index.css', // 生成文件的文件名
+			allChunks: true //从所有额外的 chunk(additional chunk) 提取
+		}),
+		/*
+		* webpack 4.x独有，替换CommonsChunkPlugin插件
+		用于代码分包
+		*/
+		new webpack.optimize.SplitChunksPlugin({
+			cacheGroups: {
+				commons: {
+					name: 'commons',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
 		})
 	]
 };

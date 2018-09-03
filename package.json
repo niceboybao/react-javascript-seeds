@@ -1,7 +1,7 @@
 {
 	"name": "react-redux-webpack",
 	"version": "1.0.0",
-	"description": "",
+	"description": "a react project base on webpack4.x",
 	"main": "index.js",
 	"keywords": [
 		"react",
@@ -20,8 +20,8 @@
 		"file-loader": "^2.0.0",
 		"html-webpack-plugin": "^3.2.0",
 		"node-sass": "^4.9.3",
-		"react": "^16.4.2",
-		"react-redux": "^5.0.7",
+		"react": "^15.5.4",
+		"react-redux": "^5.0.4",
 		"react-router": "^4.3.1",
 		"react-router-redux": "^5.0.0-alpha.6",
 		"redux": "^4.0.0",
@@ -33,7 +33,9 @@
 		"webpack-cli": "^3.1.0",
 		"webpack-dev-server": "^3.1.5"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"font-awesome": "^4.7.0"
+	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf www/*",
