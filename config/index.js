@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-30 20:09:25 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-03 22:54:24
+ * @Last Modified time: 2018-09-04 15:54:04
  * @Describe: 工程配置文件
  */
 'use strict';
@@ -14,7 +14,7 @@ const getWebpackpublicPath = () => {
 	const urlObj = {
 		development: '/www/',
 		// development: 'https://cdn.example.com/assets/',
-		production: 'http://www.xxx.com'
+		production: '/www/'
 	};
 
 	switch (NODE_ENV) {
