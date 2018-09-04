@@ -1,7 +1,7 @@
 {
     "name": "react-redux-antd-webpack",
     "version": "1.0.0",
-    "description": "",
+    "description": "react-redux-antd-webpack",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
