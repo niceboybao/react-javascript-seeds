@@ -2,8 +2,12 @@
 	"name": "react-redux-webpack",
 	"version": "0.0.0",
 	"description": "a react project base on webpack4.x",
-	"main": "index.js",
-	"keywords": [ "react", "redux", "webpack" ],
+	"main": "app.jsx",
+	"keywords": [
+		"react",
+		"redux",
+		"webpack"
+	],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf www/*",
@@ -37,12 +41,16 @@
 		"mini-css-extract-plugin": "^0.4.2",
 		"node-sass": "^4.9.3",
 		"optimize-css-assets-webpack-plugin": "^4.0.0",
-		"react": "^15.5.4",
-		"react-redux": "^5.0.4",
-		"react-router": "^4.3.1",
-		"react-router-redux": "^5.0.0-alpha.6",
+		"react": "^16.4.0",
+		"react-dom": "^16.4.0",
+		"react-redux": "^5.0.7",
+		"react-router": "^4.2.0",
+		"react-router-dom": "^4.2.2",
+		"react-router-redux": "^4.0.8",
 		"redux": "^4.0.0",
-		"redux-thunk": "^2.3.0",
+		"redux-actions": "^2.4.0",
+		"redux-saga": "^0.16.0",
+		"reselect": "^3.0.1",
 		"sass-loader": "^7.1.0",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.0",
@@ -53,6 +61,7 @@
 		"webpack-merge": "^4.1.4"
 	},
 	"dependencies": {
+		"antd": "^3.9.1",
 		"font-awesome": "^4.7.0"
 	},
 	"repository": {

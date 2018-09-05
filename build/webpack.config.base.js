@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 17:49:33
+ * @Last Modified time: 2018-09-05 20:52:38
  */
 'use strict';
 
@@ -41,7 +41,7 @@ const baseWebpackConfig = {
 	/*
 	* JavaScript 执行入口文件
 	*/
-	entry: path.resolve(__dirname, '../src/index.js'),
+	entry: path.resolve(__dirname, '../src/app.jsx'),
 
 	/*
 	* 配置出口文件
@@ -70,20 +70,32 @@ const baseWebpackConfig = {
 	module: {
 		// module.rules 数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换。
 		rules: [
-			// 该 loader 转换的 JavaScript 文件
+			// 该 loader 转换的 js jsx 文件
 			{
-				test: /\.js$/,
-				// 排除 node_modules 目录下的文件
-				exclude: path.resolve(__dirname, '../node_modules'),
+				test: /\.js[x]?$/,
+				loader: 'eslint-loader',
 				// 'post'把该 Loader 的执行顺序放到最后,'pre'放到最前
 				enforce: 'pre',
-				// 用 babel-loader 转换 JavaScript 文件
-				// ?cacheDirectory 表示传给 babel-loader 的参数，用于缓存 babel 编译结果加快重新编译速度
+				include: [ path.join(__dirname, 'src') ],
+				options: {
+					fix: true
+				}
+			},
+			// 该 loader 转换的 js jsx 文件
+			// {
+            //     test: /\.js[x]?$/,
+            //     use: 'happypack/loader?id=jsx',
+            //     exclude: /node_modules/
+            // }
+			{
+				test: /\.js[x]?$/,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../src'),
 				use: [
 					{
 						loader: 'babel-loader',
 						options: {
-							cacheDirectory: false
+							cacheDirectory: false //给 babel-loader 的参数，用于缓存 babel 编译结果加快重新编译速度
 						}
 					},
 					'source-map-loader'
@@ -192,14 +204,6 @@ const baseWebpackConfig = {
 			// Reference: https://github.com/kangax/html-minifier
 			minify: minifyHtml
 			// inject: 'head', //是否将所有资产注入给定template
-		}),
-		// 创建share.html 文件
-		new HtmlWebpackPlugin({
-			filename: 'share.html', //配置输出文件名
-			inject: false, //是否将所有资产注入给定template
-			template: path.resolve(__dirname, '../src/share.html'), //模板文件路径，支持加载器
-			// Reference: https://github.com/kangax/html-minifier
-			minify: minifyHtml
 		}),
 		// 创建error.html 文件
 		new HtmlWebpackPlugin({

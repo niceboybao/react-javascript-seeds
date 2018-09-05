@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 17:27:03
+ * @Last Modified time: 2018-09-05 18:04:06
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -80,7 +80,9 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 	* 扩展插件，在 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。
 	*/
 	plugins: [
-		//Webpack 首先从配置文件中读取这个值，然后注入
+		// Webpack 首先从配置文件中读取这个值，然后注入
+		// 如果你正在使用像react这样的库，那么在添加此DefinePlugin插件后，你应该看到捆绑大小显着下降。
+		// 还要注意，任何位于/src的本地代码都可以关联到process.env.NODE_ENV环境变量
 		new webpack.DefinePlugin({
 			'process.env': JSON.stringify('production')
 		}),
