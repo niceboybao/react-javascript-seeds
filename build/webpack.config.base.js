@@ -1,28 +1,43 @@
 /*
  * @Author: guangwei.bao 
- * @Date: 2018-08-22 16:54:12 
+ * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 17:37:32
- * @Describe: 测试环境打包配置项
+ * @Last Modified time: 2018-09-05 17:49:33
  */
 'use strict';
 
 // path 模块提供了一些工具函数，用于处理文件与目录的路径
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-//prod 开发环境变量
-const PROD_ENV = require('../config/prod.env.js');
 //import config resource
 const CommonConfig = require('../config/');
+//ASSET_PATH
 const ASSET_PATH = CommonConfig.getWebpackpublicPath();
+// isProd
+const isProd = CommonConfig.NODE_ENV === 'production';
+
+// HTML缩小器
+// Reference: https://github.com/kangax/html-minifier
+const minifyHtml = isProd
+	? {
+			minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
+			minifyJS: true, // 压缩 HTML 中出现的 JS 代码
+			removeComments: true,
+			collapseBooleanAttributes: true,
+			removeRedundantAttributes: true,
+			removeEmptyAttributes: true,
+			removeScriptTypeAttributes: true,
+			collapseWhitespace: true,
+			conservativeCollapse: true,
+			preserveLineBreaks: true
+		}
+	: {};
 
 //整个webpack配置对象
-const webpackConfig = {
+const baseWebpackConfig = {
 	/*
 	* JavaScript 执行入口文件
 	*/
@@ -35,26 +50,16 @@ const webpackConfig = {
 		// 这里是项目输出的路径,__dirname表示当前文件的位置,输出文件都放到 dist 目录下
 		path: path.resolve(__dirname, '../www'),
 		// 把所有依赖的模块合并输出到一个 [hash].[name].js 文件,这里是生成文件的名称，可起你想要的名字
-		filename: 'script/[name].[hash].bundle.js',
+		filename: isProd ? 'scripts/[name].[hash].bundle.js' : 'scripts/[name].bundle.js',
 		/*
 		* 在复杂的项目里可能会有一些构建出的资源需要异步加载，加载这些异步资源需要对应的 URL 地址。
 		配置发布到线上资源的 URL 前缀，为string 类型。 默认值是空字符串 ''，即使用相对路径。
 		*/
 		publicPath: ASSET_PATH,
 		// 配置无入口的 Chunk 在输出时的文件名称
-		chunkFilename: 'scripts/[name].[chunkhash].chunk.js' // 指定分离出来的代码文件的名称
+		chunkFilename: isProd ? 'scripts/[name].[chunkhash].chunk.js' : 'scripts/[name].chunk.js' // 指定分离出来的代码文件的名称
 		// crossOriginLoading: '' Webpack 输出的部分代码块可能需要异步加载
 	},
-
-	/*
-	* 提供 mode 配置选项，告知 webpack 使用相应模式的内置优化。
-	*/
-	mode: PROD_ENV.NODE_ENV,
-	/*
-	* 控制是否生成，以及如何生成 source map。
-	*/
-	// 'source-map' nosources-source-map
-	devtool: 'nosources-source-map',
 
 	/*
 	* Module：模块，在 Webpack 里一切皆模块，一个模块对应着一个文件。Webpack 会从配置的 Entry 开始递归找出所有依赖的模块。
@@ -65,18 +70,6 @@ const webpackConfig = {
 	module: {
 		// module.rules 数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换。
 		rules: [
-			// 用该 loader 转换 HTML 文件
-			// Reference: https://webpack.docschina.org/loaders/html-loader
-			{
-				test: /\.html$/,
-				// 只命中src目录里的js文件，加快 Webpack 搜索速度
-				include: path.resolve(__dirname, '../src'),
-				use: [
-					{
-						loader: 'html-loader?minimize=true'
-					}
-				]
-			},
 			// 该 loader 转换的 JavaScript 文件
 			{
 				test: /\.js$/,
@@ -90,13 +83,10 @@ const webpackConfig = {
 					{
 						loader: 'babel-loader',
 						options: {
-							// presets: ['env']
 							cacheDirectory: false
 						}
 					},
-					{
-						loader: 'source-map-loader'
-					}
+					'source-map-loader'
 				]
 			},
 			// 用该 loader 转换的 CSS 文件
@@ -117,11 +107,8 @@ const webpackConfig = {
 							publicPath: '../'
 						}
 					},
-					'css-loader'
+					'css-loader?sourceMap'
 				]
-
-				// 'post'把该 Loader 的执行顺序放到最后,'pre'放到最前
-				// enforce: 'post'
 			},
 			// 用该 loader 转换的 SCSS 文件
 			{
@@ -138,7 +125,7 @@ const webpackConfig = {
 							publicPath: '../'
 						}
 					},
-					'css-loader',
+					'css-loader?sourceMap',
 					'sass-loader'
 				]
 			},
@@ -153,7 +140,7 @@ const webpackConfig = {
 						options: {
 							limit: 8192, //内联文件的字节限制为数据URL
 							outputPath: 'images/', // 输出目录
-							name: '[name].[hash].[ext]' //自定义文件名
+							name: isProd ? '[name].[hash].[ext]' : '[name].[ext]' //自定义文件名
 						}
 					}
 				]
@@ -167,7 +154,7 @@ const webpackConfig = {
 						options: {
 							limit: 8192, //内联文件的字节限制为数据URL
 							outputPath: 'font/', // 输出目录
-							name: '[name].[hash].[ext]' //自定义文件名
+							name: isProd ? '[name].[hash].[ext]' : 'font/[name].[ext]' //自定义文件名
 						}
 					}
 				]
@@ -190,32 +177,6 @@ const webpackConfig = {
 	},
 
 	/*
-	* 配置 devServer
-	它提供了一些配置项可以改变 DevServer 的默认行为。 要配置 DevServer ，除了在配置文件里通过 devServer 传入参数外，
-	还可以通过命令行参数传入。 注意只有在通过 DevServer 去启动 Webpack 时配置文件里 devServer 才会生效，
-	因为这些参数所对应的功能都是 DevServer 提供的，Webpack 本身并不认识 devServer 配置项。
-	*/
-	devServer: {
-		// 要求服务器在针对任何命中的路由时都返回到 HTML 文件
-		historyApiFallback: {
-			// 使用正则匹配命中路由
-			rewrites: [
-				// /user 开头的都返回 user.html
-				{ from: /^\/share/, to: '/share.html' },
-				{ from: /^\/www/, to: '/index.html' },
-				// 其它的都返回 index.html
-				{ from: /./, to: '/error.html' }
-			]
-		},
-		hot: false, // 是否开启模块热替换功能
-		port: 8384, //端口
-		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
-		allowedHosts: [ 'niceboybao.cn' ]
-		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
-		// contentBase: path.join(__dirname, '../www')
-	},
-
-	/*
 	* 扩展插件，在 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。
 	*/
 	plugins: [
@@ -225,72 +186,33 @@ const webpackConfig = {
 		*/
 		// 创建默认的index.html 文件
 		new HtmlWebpackPlugin({
-			title: 'webpack test page webpack test page', // 模本文件标题
 			filename: 'index.html', //配置输出文件名
 			// favicon:'../favicon.ico' ,
 			template: path.resolve(__dirname, '../src/index.html'), //模板文件路径，支持加载器
-			minify: {
-				removeAttributeQuotes: true,
-				minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-				minifyJS: true, // 压缩 HTML 中出现的 JS 代码
-				removeComments: true,
-				collapseBooleanAttributes: true,
-				removeRedundantAttributes: true,
-				removeEmptyAttributes: true,
-				removeScriptTypeAttributes: true,
-				collapseWhitespace: true,
-				conservativeCollapse: true,
-				preserveLineBreaks: true
-			}
+			// Reference: https://github.com/kangax/html-minifier
+			minify: minifyHtml
 			// inject: 'head', //是否将所有资产注入给定template
 		}),
 		// 创建share.html 文件
 		new HtmlWebpackPlugin({
-			title: 'share test page', // 模本文件标题
 			filename: 'share.html', //配置输出文件名
 			inject: false, //是否将所有资产注入给定template
 			template: path.resolve(__dirname, '../src/share.html'), //模板文件路径，支持加载器
-			minify: {
-				removeAttributeQuotes: true,
-				minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-				minifyJS: true, // 压缩 HTML 中出现的 JS 代码
-				removeComments: true,
-				collapseBooleanAttributes: true,
-				removeRedundantAttributes: true,
-				removeEmptyAttributes: true,
-				removeScriptTypeAttributes: true,
-				collapseWhitespace: true,
-				conservativeCollapse: true,
-				preserveLineBreaks: true
-			}
+			// Reference: https://github.com/kangax/html-minifier
+			minify: minifyHtml
 		}),
 		// 创建error.html 文件
 		new HtmlWebpackPlugin({
-			title: '404 test page', // 模本文件标题
 			filename: 'error.html', //配置输出文件名
 			inject: false, //是否将所有资产注入给定template
 			template: path.resolve(__dirname, '../src/error.html'), //模板文件路径，支持加载器
-			minify: {
-				removeAttributeQuotes: true,
-				minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-				minifyJS: true, // 压缩 HTML 中出现的 JS 代码
-				removeComments: true,
-				collapseBooleanAttributes: true,
-				removeRedundantAttributes: true,
-				removeEmptyAttributes: true,
-				removeScriptTypeAttributes: true,
-				collapseWhitespace: true,
-				conservativeCollapse: true,
-				preserveLineBreaks: true
-			}
+			// Reference: https://github.com/kangax/html-minifier
+			minify: minifyHtml
 		}),
-		//Webpack 首先从配置文件中读取这个值，然后注入
-		new webpack.DefinePlugin({
-			'process.env': PROD_ENV
-		}),
+
 		//webpack 4.x独有 分离css
 		new MiniCssExtractPlugin({
-			filename: 'css/[name].[contenthash].bundle.css', // 生成文件的文件名
+			filename: isProd ? 'css/[name].[contenthash].bundle.css' : 'css/[name].bundle.css', // 生成文件的文件名
 			allChunks: true //从所有额外的 chunk(additional chunk) 提取
 		}),
 		// 将单个文件或整个目录复制到构建目录
@@ -299,19 +221,7 @@ const webpackConfig = {
 				from: 'src/mock',
 				to: 'mock'
 			}
-		]),
-
-		// 用于优化\最小化CSS资产。
-		// Reference: https://github.com/NMFR/optimize-css-assets-webpack-plugin
-		new OptimizeCssAssetsPlugin({
-			assetNameRegExp: /\.bundle\.css$/g, //默认为/\.css$/g
-			cssProcessor: require('cssnano'), //用于优化\最小化CSS的CSS处理器，默认为cssnano
-			// 传递给 cssProcessor 的插件选项
-			cssProcessorPluginOptions: {
-				preset: [ 'default', { discardComments: { removeAll: true } } ]
-			},
-			canPrint: true //指示插件是否可以将消息打印到控制台，默认为 true
-		})
+		])
 	],
 
 	// 3.x 以前的版本是使用 CommonsChunkPlugin 来做代码分离的，而 webpack 4.x 则是把相关的功能包到了
@@ -341,4 +251,4 @@ const webpackConfig = {
 	}
 };
 
-module.exports = webpackConfig;
+module.exports = baseWebpackConfig;
