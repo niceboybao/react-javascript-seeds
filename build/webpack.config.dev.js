@@ -2,13 +2,15 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 18:03:56
+ * @Last Modified time: 2018-09-06 17:32:14
  * @Describe: 测试环境打包配置项
  */
 'use strict';
 
 const webpack = require('webpack');
+const path = require('path');
 const merge = require('webpack-merge');
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
 const baseWebpackConfig = require('./webpack.config.base.js');
 
 //整个webpack配置对象
@@ -45,6 +47,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		port: 8384, //端口
 		open: true, // 启用open后，开发服务器会打开浏览器。
 		openPage: 'www/'
+		// 不监听的文件或文件夹，支持正则匹配。默认为空
+		// ignored: /node_modules/,
 		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
 		// contentBase: path.join(__dirname, '../www')
 	},
@@ -58,8 +62,32 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		// Webpack 首先从配置文件中读取这个值，然后注入
 		// 如果你正在使用像react这样的库，那么在添加此DefinePlugin插件后，你应该看到捆绑大小显着下降。
 		// 还要注意，任何位于/src的本地代码都可以关联到process.env.NODE_ENV环境变量
+
 		new webpack.DefinePlugin({
 			'process.env': JSON.stringify('development')
+		}),
+
+		// 使用 ParallelUglifyPlugin 并行压缩输出的 JS 代码
+		new ParallelUglifyPlugin({
+			// 传递给 UglifyJS 的参数
+			uglifyJS: {
+				output: {
+					// 最紧凑的输出
+					beautify: false,
+					// 删除所有的注释
+					comments: false
+				},
+				compress: {
+					// 在UglifyJs删除没有用到的代码时不输出警告
+					warnings: false,
+					// 删除所有的 `console` 语句，可以兼容ie浏览器
+					drop_console: true,
+					// 内嵌定义了但是只用到一次的变量
+					collapse_vars: true,
+					// 提取出出现多次但是没有定义成变量去引用的静态值
+					reduce_vars: true
+				}
+			}
 		})
 	]
 });

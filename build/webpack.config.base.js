@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 20:52:38
+ * @Last Modified time: 2018-09-06 20:35:43
  */
 'use strict';
 
@@ -11,6 +11,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HappyPack = require('happypack');
+// 在内部创建的每个HappyPack插件都会创建自己的线程，用于运行加载器。但是，如果您使用多个HappyPack插件，
+// 那么最好自己创建一个线程池，然后配置插件以共享该池，从而最大限度地减少其中线程的空闲时间。
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+const marked = require('marked');
+const renderer = new marked.Renderer();
 
 //import config resource
 const CommonConfig = require('../config/');
@@ -56,6 +63,8 @@ const baseWebpackConfig = {
 		配置发布到线上资源的 URL 前缀，为string 类型。 默认值是空字符串 ''，即使用相对路径。
 		*/
 		publicPath: ASSET_PATH,
+		sourceMapFilename: '[file].map',
+		pathinfo: isProd ? false : true,
 		// 配置无入口的 Chunk 在输出时的文件名称
 		chunkFilename: isProd ? 'scripts/[name].[chunkhash].chunk.js' : 'scripts/[name].chunk.js' // 指定分离出来的代码文件的名称
 		// crossOriginLoading: '' Webpack 输出的部分代码块可能需要异步加载
@@ -81,36 +90,26 @@ const baseWebpackConfig = {
 					fix: true
 				}
 			},
+
 			// 该 loader 转换的 js jsx 文件
-			// {
-            //     test: /\.js[x]?$/,
-            //     use: 'happypack/loader?id=jsx',
-            //     exclude: /node_modules/
-            // }
 			{
 				test: /\.js[x]?$/,
+				// HappyPack通过并行转换文件使得初始webpack构建更快。
+				use: 'happypack/loader?id=babel',
 				// 只命中src目录里的js文件，加快 Webpack 搜索速度
 				include: path.resolve(__dirname, '../src'),
-				use: [
-					{
-						loader: 'babel-loader',
-						options: {
-							cacheDirectory: false //给 babel-loader 的参数，用于缓存 babel 编译结果加快重新编译速度
-						}
-					},
-					'source-map-loader'
-				]
+				// 排除 node_modules 目录下的文件
+				exclude: path.resolve(__dirname, '../node_modules')
 			},
+
 			// 用该 loader 转换的 CSS 文件
 			{
-				// test include exclude 这三个命中文件的配置项只传入了一个字符串或正则，其实它们还都支持数组类型
 				test: /\.css$/,
-				// 只命中src目录里的js文件，加快 Webpack 搜索速度
-				// include: path.resolve(__dirname, '../src'),
 				// 排除 node_modules 目录下的文件
 				// exclude: path.resolve(__dirname, '../node_modules'),
-				// use: [ 'style-loader', 'css-loader?minimize' ]
+				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
 				use: [
+					'cache-loader',
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
@@ -122,13 +121,15 @@ const baseWebpackConfig = {
 					'css-loader?sourceMap'
 				]
 			},
+
 			// 用该 loader 转换的 SCSS 文件
 			{
 				test: /\.scss$/,
-				// 排除 node_modules 目录下的文件
-				exclude: path.resolve(__dirname, '../node_modules'),
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../src'),
 				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
 				use: [
+					'cache-loader',
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
@@ -141,11 +142,13 @@ const baseWebpackConfig = {
 					'sass-loader'
 				]
 			},
+
 			// 用该 loader 配置图片
 			{
 				// 对非文本文件采用 file-loader 加载
-				// test: /\.(gif|png|jpe?g|eot|woff|ttf|svg|pdf)$/,
-				test: /\.(png|jpg|jpe?g|gif)$/,
+				test: /.*\.(gif|png|jpe?g|svg|webp)$/i,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../src'),
 				use: [
 					{
 						loader: 'url-loader',
@@ -154,12 +157,42 @@ const baseWebpackConfig = {
 							outputPath: 'images/', // 输出目录
 							name: isProd ? '[name].[hash].[ext]' : '[name].[ext]' //自定义文件名
 						}
+					},
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							mozjpeg: {
+								// 压缩 jpeg 的配置
+								progressive: true,
+								quality: 65
+							},
+							optipng: {
+								// 使用 imagemin-optipng 压缩 png，enable: false 为关闭
+								enabled: false
+							},
+							pngquant: {
+								// 使用 imagemin-pngquant 压缩 png
+								quality: '65-90',
+								speed: 4
+							},
+							gifsicle: {
+								// 压缩 gif 的配置
+								interlaced: false
+							},
+							webp: {
+								// 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
+								quality: 75
+							}
+						}
 					}
 				]
 			},
+
 			// 用该 loader 配置字体图标
 			{
 				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../src'),
 				use: [
 					{
 						loader: 'url-loader',
@@ -171,10 +204,32 @@ const baseWebpackConfig = {
 					}
 				]
 			},
+
 			// 用该 loader 配置json数据
 			{
 				test: /\.json$/,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../src'),
 				loader: 'json-loader'
+			},
+
+			// 用该 loader 处理markdown文件
+			{
+				test: /\.md$/,
+				// 只命中src目录里的js文件，加快 Webpack 搜索速度
+				include: path.resolve(__dirname, '../doc'),
+				use: [
+					'cache-loader',
+					'html-loader',
+
+					{
+						loader: 'markdown-loader',
+						options: {
+							pedantic: true,
+							renderer
+						}
+					}
+				]
 			}
 		]
 	},
@@ -184,8 +239,13 @@ const baseWebpackConfig = {
 	Webpack 内置 JavaScript 模块化语法解析功能，默认会采用模块化标准里约定好的规则去寻找，但你也可以根据自己的需要修改默认的规则。
 	*/
 	resolve: {
+		// 使用绝对路径指明第三方模块存放的位置，以减少搜索步骤
+		// 其中 __dirname 表示当前工作目录，也就是项目根目录
+		modules: [ path.resolve(__dirname, '../node_modules') ],
 		// 用于配置在尝试过程中用到的后缀列表,优先级从前往后
-		extensions: [ '.config.base.js', '.config.dev.js', '.config.prod.js', '.js', '.jsx', '.json' ]
+		extensions: [ '.js', '.jsx', '.json' ]
+		// 独完整的 `react.min.js` 文件就没有采用模块化，忽略对 `react.min.js` 文件的递归解析处理
+		// noParse: [/react\.min\.js$/],
 	},
 
 	/*
@@ -199,8 +259,8 @@ const baseWebpackConfig = {
 		// 创建默认的index.html 文件
 		new HtmlWebpackPlugin({
 			filename: 'index.html', //配置输出文件名
-			// favicon:'../favicon.ico' ,
-			template: path.resolve(__dirname, '../src/index.html'), //模板文件路径，支持加载器
+			favicon: './favicon.ico',
+			template: './src/index.html', //模板文件路径，支持加载器
 			// Reference: https://github.com/kangax/html-minifier
 			minify: minifyHtml
 			// inject: 'head', //是否将所有资产注入给定template
@@ -208,10 +268,19 @@ const baseWebpackConfig = {
 		// 创建error.html 文件
 		new HtmlWebpackPlugin({
 			filename: 'error.html', //配置输出文件名
+			favicon: './favicon.ico',
 			inject: false, //是否将所有资产注入给定template
-			template: path.resolve(__dirname, '../src/error.html'), //模板文件路径，支持加载器
+			template: './src/index.html', //模板文件路径，支持加载器
 			// Reference: https://github.com/kangax/html-minifier
 			minify: minifyHtml
+		}),
+
+		// HappyPack通过并行转换文件使得初始webpack构建更快。
+		new HappyPack({
+			id: 'babel',
+			threadPool: happyThreadPool,
+			// babel-loader 支持缓存转换出的结果，通过 cacheDirectory 选项开启
+			loaders: [ 'cache-loader', 'babel-loader?cacheDirectory', 'source-map-loader' ]
 		}),
 
 		//webpack 4.x独有 分离css
@@ -219,13 +288,23 @@ const baseWebpackConfig = {
 			filename: isProd ? 'css/[name].[contenthash].bundle.css' : 'css/[name].bundle.css', // 生成文件的文件名
 			allChunks: true //从所有额外的 chunk(additional chunk) 提取
 		}),
+
 		// 将单个文件或整个目录复制到构建目录
 		new CopyWebpackPlugin([
 			{
 				from: 'src/mock',
 				to: 'mock'
 			}
-		])
+		]),
+
+		// 使用交互式可缩放树形图可视化webpack输出文件的大小。
+		// Reference: https://www.npmjs.com/package/webpack-bundle-analyzer
+		new BundleAnalyzerPlugin({
+			// 在static模式下，将生成包含报告的单个HTML文件。
+			analyzerMode: 'static',
+			// 在默认浏览器中自动打开报告。
+			openAnalyzer: false
+		})
 	],
 
 	// 3.x 以前的版本是使用 CommonsChunkPlugin 来做代码分离的，而 webpack 4.x 则是把相关的功能包到了

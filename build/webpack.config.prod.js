@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 18:04:06
+ * @Last Modified time: 2018-09-06 16:42:23
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -11,6 +11,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base.js');
 
@@ -80,6 +81,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 	* 扩展插件，在 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。
 	*/
 	plugins: [
+		
 		// Webpack 首先从配置文件中读取这个值，然后注入
 		// 如果你正在使用像react这样的库，那么在添加此DefinePlugin插件后，你应该看到捆绑大小显着下降。
 		// 还要注意，任何位于/src的本地代码都可以关联到process.env.NODE_ENV环境变量
@@ -97,6 +99,15 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 				preset: [ 'default', { discardComments: { removeAll: true } } ]
 			},
 			canPrint: true //指示插件是否可以将消息打印到控制台，默认为 true
+		}),
+
+		// 使用Imagemin压缩项目中的所有图像
+		// 确保插件位于添加图像的任何插件之后
+		new ImageminPlugin({
+			disable: process.env.NODE_ENV !== 'production', // Disable during development
+			pngquant: {
+				quality: '95-100'
+			}
 		})
 	]
 });
