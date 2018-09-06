@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-06 20:35:43
+ * @Last Modified time: 2018-09-06 20:51:23
  */
 'use strict';
 
@@ -109,7 +109,6 @@ const baseWebpackConfig = {
 				// exclude: path.resolve(__dirname, '../node_modules'),
 				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
 				use: [
-					'cache-loader',
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
@@ -129,7 +128,6 @@ const baseWebpackConfig = {
 				include: path.resolve(__dirname, '../src'),
 				// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。
 				use: [
-					'cache-loader',
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
