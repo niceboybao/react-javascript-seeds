@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-06 20:51:23
+ * @Last Modified time: 2018-09-07 15:59:41
  */
 'use strict';
 
@@ -117,7 +117,7 @@ const baseWebpackConfig = {
 							publicPath: '../'
 						}
 					},
-					'css-loader?sourceMap'
+					'css-loader'
 				]
 			},
 
@@ -136,7 +136,15 @@ const baseWebpackConfig = {
 							publicPath: '../'
 						}
 					},
-					'css-loader?sourceMap',
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true,
+							importLoaders: 1, // 在CSS加载器之前应用的加载器数量
+							modules: true, // 启用/禁用CSS模块
+							localIdentName: '[path]__[name]__[local]__[hash:base64:5]' // 配置生成的ident
+						}
+					},
 					'sass-loader'
 				]
 			},
@@ -219,7 +227,6 @@ const baseWebpackConfig = {
 				use: [
 					'cache-loader',
 					'html-loader',
-
 					{
 						loader: 'markdown-loader',
 						options: {
