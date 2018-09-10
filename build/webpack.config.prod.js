@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-06 16:42:23
+ * @Last Modified time: 2018-09-10 23:05:42
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -62,8 +62,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 		historyApiFallback: {
 			// 使用正则匹配命中路由
 			rewrites: [
-				// /user 开头的都返回 user.html
-				{ from: /^\/share/, to: '/share.html' },
+				// /www 开头的都返回 index.html
 				{ from: /^\/www/, to: '/index.html' },
 				// 其它的都返回 index.html
 				{ from: /./, to: '/error.html' }

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 17:37:32
+ * @Last Modified time: 2018-09-10 23:05:27
  * @Describe: 测试环境打包配置项
  */
 'use strict';
@@ -200,8 +200,7 @@ const webpackConfig = {
 		historyApiFallback: {
 			// 使用正则匹配命中路由
 			rewrites: [
-				// /user 开头的都返回 user.html
-				{ from: /^\/share/, to: '/share.html' },
+				// /www 开头的都返回 index.html
 				{ from: /^\/www/, to: '/index.html' },
 				// 其它的都返回 index.html
 				{ from: /./, to: '/error.html' }
@@ -243,26 +242,6 @@ const webpackConfig = {
 				preserveLineBreaks: true
 			}
 			// inject: 'head', //是否将所有资产注入给定template
-		}),
-		// 创建share.html 文件
-		new HtmlWebpackPlugin({
-			title: 'share test page', // 模本文件标题
-			filename: 'share.html', //配置输出文件名
-			inject: false, //是否将所有资产注入给定template
-			template: path.resolve(__dirname, '../src/share.html'), //模板文件路径，支持加载器
-			minify: {
-				removeAttributeQuotes: true,
-				minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-				minifyJS: true, // 压缩 HTML 中出现的 JS 代码
-				removeComments: true,
-				collapseBooleanAttributes: true,
-				removeRedundantAttributes: true,
-				removeEmptyAttributes: true,
-				removeScriptTypeAttributes: true,
-				collapseWhitespace: true,
-				conservativeCollapse: true,
-				preserveLineBreaks: true
-			}
 		}),
 		// 创建error.html 文件
 		new HtmlWebpackPlugin({

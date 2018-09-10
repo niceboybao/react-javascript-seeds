@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-06 17:32:14
+ * @Last Modified time: 2018-09-10 23:36:56
  * @Describe: 测试环境打包配置项
  */
 'use strict';
@@ -36,8 +36,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		historyApiFallback: {
 			// 使用正则匹配命中路由
 			rewrites: [
-				// /user 开头的都返回 user.html
-				{ from: /^\/share/, to: '/share.html' },
+				// /www 开头的都返回 index.html
 				{ from: /^\/www/, to: '/index.html' },
 				// 其它的都返回 index.html
 				{ from: /./, to: '/error.html' }
@@ -46,11 +45,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		hot: true, // 是否开启模块热替换功能
 		port: 8384, //端口
 		open: true, // 启用open后，开发服务器会打开浏览器。
-		openPage: 'www/'
+		openPage: 'www/',
 		// 不监听的文件或文件夹，支持正则匹配。默认为空
 		// ignored: /node_modules/,
-		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
-		// contentBase: path.join(__dirname, '../www')
+		// 配置 DevServer HTTP 服务器的文件根目录。 默认情况下为当前执行目录，通常是项目根目录
+		contentBase: path.join(__dirname, '../www')
 	},
 
 	/*

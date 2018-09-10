@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-30 20:09:25 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-05 17:33:28
+ * @Last Modified time: 2018-09-10 11:10:03
  * @Describe: 工程配置文件
  */
 'use strict';
@@ -29,11 +29,7 @@ const getWebpackpublicPath = () => {
 	}
 };
 
-// 版本号
-const currentBuildNumber = 100;
-
 module.exports = {
 	NODE_ENV: NODE_ENV,
-	getWebpackpublicPath,
-	currentBuildNumber: currentBuildNumber
+	getWebpackpublicPath
 };

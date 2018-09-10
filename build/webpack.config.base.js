@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-09 23:23:55
+ * @Last Modified time: 2018-09-10 23:32:53
  */
 'use strict';
 
@@ -48,8 +48,13 @@ const baseWebpackConfig = {
 	/*
 	* JavaScript 执行入口文件
 	*/
-	entry: path.resolve(__dirname, '../src/app.jsx'),
-
+	entry: isProd
+		? {
+				app: path.resolve(__dirname, '../src/app.jsx')
+			}
+		: {
+				app: [ 'react-hot-loader/patch', path.resolve(__dirname, '../src/app.jsx') ]
+			},
 	/*
 	* 配置出口文件
 	*/
@@ -275,7 +280,7 @@ const baseWebpackConfig = {
 			filename: 'error.html', //配置输出文件名
 			favicon: './favicon.ico',
 			inject: false, //是否将所有资产注入给定template
-			template: './src/index.html', //模板文件路径，支持加载器
+			template: './src/error.html', //模板文件路径，支持加载器
 			// Reference: https://github.com/kangax/html-minifier
 			minify: minifyHtml
 		}),
