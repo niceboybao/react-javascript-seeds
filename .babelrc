@@ -4,7 +4,8 @@
       "transform-runtime",
       {
         "polyfill": false
-      }
+      },
+      "react-hot-loader/babel"
     ]
    ],
   "presets": [

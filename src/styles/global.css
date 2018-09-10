@@ -1,0 +1,23 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-10 16:31:48 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-10 16:32:16
+ * @Describe: css 全局样式
+ */
+
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	position: fixed;
+	overflow: hidden;
+}
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
