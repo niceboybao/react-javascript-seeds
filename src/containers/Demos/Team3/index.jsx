@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-export default class Team2 extends React.Component {
+export default class Team3 extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log('Team2 constructor');
+		console.log('Team3 constructor');
 	}
 
 	render() {
-		return <div>Team2</div>;
+		return <div>Team3</div>;
 	}
 }

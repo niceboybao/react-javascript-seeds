@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:38:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 19:09:16
+ * @Last Modified time: 2018-09-11 14:53:44
  * @Describe: 路由匹配不上的404页面
  */
 
@@ -14,7 +14,7 @@ export default class NoMatch extends React.Component {
 		return (
 			<div>
 				<h1>
-					Page not found for <code>NoMatch</code>
+					找不到路径为{location.pathname}的页面
 				</h1>
 			</div>
 		);

@@ -1,21 +1,28 @@
 {
-  "plugins": [
-    [
-      "transform-runtime",
-      {
-        "polyfill": false
-      },
-      "react-hot-loader/babel"
-    ]
-   ],
-  "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ],
-    "stage-2",
-    "react"
-  ]
+	"plugins": [
+		[
+			"transform-runtime",
+			{
+				"polyfill": false
+			}
+		],
+		[ "react-hot-loader/babel" ],
+		[
+			"import",
+			{
+				"libraryName": "antd",
+				"style": "css"
+			}
+		]
+	],
+	"presets": [
+		[
+			"es2015",
+			{
+				"modules": false
+			}
+		],
+		"stage-2",
+		"react"
+	]
 }

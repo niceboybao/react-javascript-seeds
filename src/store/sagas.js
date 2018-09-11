@@ -2,16 +2,18 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:01:57 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 15:07:16
+ * @Last Modified time: 2018-09-11 15:32:39
  * @Describe: 工程sagas 入口文件
  */
 'use strict';
 
 import { all, fork } from 'redux-saga/effects';
 
-//各个组件的sagas
-// import sagaTeam1 from './containers/Team1/sagas';
+// import component
+
+// demo
+import team1Saga from '../containers/Demos/Team1/sagas';
 
 export default function* rootSaga() {
-	// yield all([ fork(sagaTeam1) ]);
+	yield all([ fork(team1Saga) ]);
 }
