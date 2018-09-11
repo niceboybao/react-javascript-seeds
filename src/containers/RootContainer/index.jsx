@@ -39,12 +39,12 @@ export default class RootContainer extends Component {
 		return (
 			// 所有位置的基本URL。如果您的应用程序是从服务器上的子目录提供的，则需要将其设置为子目录。
 			// 格式正确的基本名称应该有一个前导斜杠，但没有尾部斜杠。
-			<Router  basename="/www">
-				<Switch>
-					<Route exact path="/" component={Team1} />
-					<Route path="/team2" component={Team2} />
-				</Switch>
-			</Router>
+
+			<Switch>
+				<Route exact path="/" component={Team1} />
+				<Route path="/team2" component={Team2} />
+				{/* when none of the above match, <NoMatch> will be rendered */}
+			</Switch>
 		);
 	}
 }

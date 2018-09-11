@@ -7,7 +7,7 @@ import { RouteComponentProps } from 'react-router-dom';
 export default class Team2 extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log('Team1 constructor');
+		console.log('Team2 constructor');
 
 	}
 	

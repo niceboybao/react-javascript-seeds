@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 23:36:56
+ * @Last Modified time: 2018-09-11 13:47:28
  * @Describe: 测试环境打包配置项
  */
 'use strict';

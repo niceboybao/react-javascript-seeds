@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 23:05:42
+ * @Last Modified time: 2018-09-11 14:15:03
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -71,16 +71,15 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 		hot: false, // 是否开启模块热替换功能
 		port: 8384, //端口
 		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
-		allowedHosts: [ 'niceboybao.cn' ]
+		// allowedHosts: [ 'niceboybao.cn' ],
 		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
-		// contentBase: path.join(__dirname, '../www')
+		contentBase: path.join(__dirname, '../www')
 	},
 
 	/*
 	* 扩展插件，在 Webpack 构建流程中的特定时机注入扩展逻辑来改变构建结果或做你想要的事情。
 	*/
 	plugins: [
-		
 		// Webpack 首先从配置文件中读取这个值，然后注入
 		// 如果你正在使用像react这样的库，那么在添加此DefinePlugin插件后，你应该看到捆绑大小显着下降。
 		// 还要注意，任何位于/src的本地代码都可以关联到process.env.NODE_ENV环境变量

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 23:03:04
+ * @Last Modified time: 2018-09-11 10:33:57
  * @Describe: 工程入口文件
  */
 
@@ -16,7 +16,7 @@ import { Provider, connect } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import * as log from 'loglevel';
 
@@ -46,15 +46,17 @@ if (process.env.NODE_ENV === 'production') {
 	log.setLevel('debug');
 }
 
+// Create router basename
+// basename:路由所有位置的基本URL
+let appBase = '/www';
+const basepath = window.location.href.match(/\/\/([^\/]*)\/(.*)\/www/);
+if (basepath !== undefined && basepath !== null && basepath.length == 3) {
+	// 部署到自己的域名下时，动态拼接域名下的工程文件夹
+	appBase = '/' + basepath[2] + appBase;
+}
 // Create a history
-// let appBase = '/www';
-// let basepath = window.location.href.match(/\/\/([^\/]*)\/(.*)\/www/);
-// if (basepath !== undefined && basepath !== null && basepath.length == 3) {
-// 	appBase = '/' + basepath[2] + appBase;
-// }
-// const history = createBrowserHistory({ basename: appBase });
-const history = createBrowserHistory({ basename: '/www' });
-
+const history = createBrowserHistory({ basename: appBase });
+debugger;
 // Create react-router-redux middleware
 const reduxRouterMiddleware = routerMiddleware(history);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -62,7 +64,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // create store
 const store = createStore(
 	createReducer(undefined),
-	//    使用applyMiddleware函数将创建的saga Middleware实例绑定到store上
+	// 使用applyMiddleware函数将创建的saga Middleware实例绑定到store上
 	composeEnhancers(applyMiddleware(sagaMiddleware, reduxRouterMiddleware))
 );
 
@@ -76,7 +78,9 @@ window.sagaMiddleware = sagaMiddleware;
 ReactDOM.render(
 	<AppContainer>
 		<Provider store={store}>
-			<RootContainer />
+			<BrowserRouter basename={appBase}>
+				<RootContainer />
+			</BrowserRouter>
 		</Provider>
 	</AppContainer>,
 	document.getElementById('root')
