@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 17:57:18
+ * @Last Modified time: 2018-09-12 15:56:43
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -10,7 +10,7 @@
 import React from 'react';
 
 // import component
-import NoMatch from '../containers/NoMatch';
+import Exception from '../containers/Exception';
 import Welcome from '../containers/Welcome';
 // demo
 import Team1 from '../containers/Demos/Team1';
@@ -25,6 +25,15 @@ export default function createRoutes() {
 			exact: true, //true 表示严格匹配 false 正常匹配
 			component: Welcome
 		},
+
+		// welcome 首页
+		{
+			path: '/welcome',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: Welcome
+		},
+
+		// demo
 		{
 			path: '/demo',
 			exact: true, //true 表示严格匹配 false 正常匹配
@@ -42,10 +51,16 @@ export default function createRoutes() {
 			path: '/demo/team3',
 			component: Team3
 		},
-		// when none of the above match, <NoMatch> will be rendered
+
+		// Exception
+		{
+			path: '/exception/:id',
+			component: Exception
+		},
+		// when none of the above match, <Exception> will be rendered
 		{
 			path: '*',
-			component: NoMatch
+			component: Exception
 		}
 
 		// {

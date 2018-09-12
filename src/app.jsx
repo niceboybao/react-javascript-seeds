@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 10:33:57
+ * @Last Modified time: 2018-09-12 14:31:15
  * @Describe: 工程入口文件
  */
 
@@ -56,7 +56,6 @@ if (basepath !== undefined && basepath !== null && basepath.length == 3) {
 }
 // Create a history
 const history = createBrowserHistory({ basename: appBase });
-debugger;
 // Create react-router-redux middleware
 const reduxRouterMiddleware = routerMiddleware(history);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:24:42 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 15:50:31
+ * @Last Modified time: 2018-09-12 14:31:25
  */
 import { createAction, handleActions, Action } from 'redux-actions';
 
@@ -17,7 +17,6 @@ export const team1Reducer = handleActions(
 	{
 		//计数器方法+
 		[INCREMENT]: (state, action) => {
-			debugger;
 			return Object.assign({}, state, {
 				count: state.count + action.payload
 			});
@@ -30,7 +29,6 @@ export const team1Reducer = handleActions(
 		},
 		//初始化计时器
 		[INITMENT]: (state, action) => {
-			debugger;
 			return Object.assign({}, state, {
 				count: action.payload
 			});

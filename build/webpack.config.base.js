@@ -2,7 +2,8 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 23:32:53
+ * @Last Modified time: 2018-09-12 16:24:33
+ * @Describe: webpack打包公共配置项
  */
 'use strict';
 
@@ -201,7 +202,7 @@ const baseWebpackConfig = {
 
 			// 用该 loader 配置字体图标
 			{
-				test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
 				// 只命中src目录里的js文件，加快 Webpack 搜索速度
 				include: path.resolve(__dirname, '../src'),
 				use: [

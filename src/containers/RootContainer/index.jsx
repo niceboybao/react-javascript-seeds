@@ -1,3 +1,10 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-11 18:04:46 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-12 10:25:22
+ * @Describe: 路由配置入口组件
+ */
 import React, { Component } from 'react';
 // import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -7,10 +14,6 @@ import createRoutes from '../../store/router';
 
 // const { SubMenu } = Menu;
 // const { Header, Content, Sider, Footer } = Layout;
-
-import NoMatch from '../NoMatch';
-import Team1 from '../Demos/Team1';
-import Team2 from '../Demos/Team2';
 
 export default class RootContainer extends Component {
 	constructor(props) {

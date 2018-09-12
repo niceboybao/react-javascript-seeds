@@ -2,12 +2,14 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:20:08 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 17:09:05
+ * @Last Modified time: 2018-09-12 14:46:14
  * @Describe: Team1 一个经典的react-redux-saga流程组件(API注释尽量写在此组件下)
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 import { CounterDisplay } from '../../../components/Demos/CounterDisplay';
 import { CounterControl } from '../../../components/Demos/CounterControl';
@@ -155,6 +157,13 @@ class Team1 extends React.Component {
 							<div>{data.busiCode}</div>
 						</div>
 					)}
+					<Link
+						to={
+							'/exception/500'
+						}
+					>
+						<div>跳转到500页面</div>
+					</Link>
 				</div>
 			</div>
 		);
