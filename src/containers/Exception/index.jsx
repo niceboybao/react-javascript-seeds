@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:38:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-12 16:21:22
+ * @Last Modified time: 2018-09-13 17:30:21
  * @Describe: 路由匹配不上的404页面
  */
 
@@ -16,16 +16,26 @@ import utils from '../../utils';
 import style from './index.scss';
 
 export default class Exception extends React.Component {
-	// render
-	render() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			configPage: this.constructorConfig()
+		};
+		utils.burry(this.constructorConfig().title);
+	}
+	constructorConfig() {
 		console.log(this.props.match.params);
-
 		let configPage = typeConfig['404'];
 		if (this.props.match.params) {
 			if (this.props.match.params.id) {
 				configPage = typeConfig[this.props.match.params.id];
 			}
 		}
+		return configPage;
+	}
+	// render
+	render() {
+		const { configPage } = this.state;
 
 		return (
 			<div id={style.exception}>

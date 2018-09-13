@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:20:08 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-12 14:46:14
+ * @Last Modified time: 2018-09-13 17:53:55
  * @Describe: Team1 一个经典的react-redux-saga流程组件(API注释尽量写在此组件下)
  */
 
@@ -10,7 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-
+import utils from  '../../../utils';
 import { CounterDisplay } from '../../../components/Demos/CounterDisplay';
 import { CounterControl } from '../../../components/Demos/CounterControl';
 
@@ -56,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 class Team1 extends React.Component {
 	constructor(props) {
 		super(props);
+		utils.burry('Team1');
 		console.log('Team1 constructor');
 
 		this.state = {

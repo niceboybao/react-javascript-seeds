@@ -19,7 +19,7 @@
 		"dev": " cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --profile --progress --color --config ./build/webpack.config.dev.js ",
 		"prod": " cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.prod.js ",
 		"start": "npm run clean && npm run build && npm run dev",
-		"start-dev": "npm run clean && npm run build-dev && npm run dev",
+		"start-dev": "npm run clean-cache && npm run clean && npm run build-dev && npm run dev",
 		"start-prod": "npm run clean && npm run build-prod && npm run prod",
 		"open-stats": "node node_modules/.bin/webpack-bundle-analyzer stats.json"
 	},
