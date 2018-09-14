@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:20:08 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-13 17:53:55
+ * @Last Modified time: 2018-09-14 16:14:07
  * @Describe: Team1 一个经典的react-redux-saga流程组件(API注释尽量写在此组件下)
  */
 
@@ -10,18 +10,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import utils from  '../../../utils';
+import utils from '../../../utils';
 import { CounterDisplay } from '../../../components/Demos/CounterDisplay';
 import { CounterControl } from '../../../components/Demos/CounterControl';
+//import css,scss 模块化
+import style from './style.scss';
 
 //dispatch action
 import { increment, decrement, initment, requestData } from './actions';
 
 // import { dataSelector, countSelector } from './selectors';
 
-//import css
-// scss 模块化
-import style from './style.scss';
+
 
 const mapStateToProps = (state) => {
 	return {
@@ -57,7 +57,6 @@ class Team1 extends React.Component {
 	constructor(props) {
 		super(props);
 		utils.burry('Team1');
-		console.log('Team1 constructor');
 
 		this.state = {
 			name: '点我改变state',
@@ -158,12 +157,11 @@ class Team1 extends React.Component {
 							<div>{data.busiCode}</div>
 						</div>
 					)}
-					<Link
-						to={
-							'/exception/500'
-						}
-					>
-						<div>跳转到500页面</div>
+					<Link to={'/exception/500'}>
+						<div>接口500测试</div>
+					</Link>
+					<Link to={'/exception/401'}>
+						<div>接口403权限问题</div>
 					</Link>
 				</div>
 			</div>

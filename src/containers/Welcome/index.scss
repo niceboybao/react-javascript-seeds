@@ -1,0 +1,18 @@
+%border {
+	width: 100%;
+	height: 100%;
+}
+#welcome {
+	@extend %border;
+	background-image: url('../../images/welcome/overlay-vignette.png');
+	background-size: 100% 100%;
+	position: relative;
+	.background {
+		position: absolute;
+        @extend %border;
+        z-index: -1;
+		.img {
+			@extend %border;
+		}
+	}
+}
