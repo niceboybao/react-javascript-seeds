@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-14 16:37:45
+ * @Last Modified time: 2018-09-16 23:57:24
  * @Describe: webpack打包公共配置项
  */
 'use strict';
@@ -170,6 +170,7 @@ const baseWebpackConfig = {
 							name: isProd ? '[name].[hash].[ext]' : '[name].[ext]' //自定义文件名
 						}
 					},
+					// 为何使用image-webpack-loader 会报错 ???
 					// {
 					// 	loader: 'image-webpack-loader',
 					// 	options: {
