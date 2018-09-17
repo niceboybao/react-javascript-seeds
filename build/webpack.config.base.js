@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-16 23:57:24
+ * @Last Modified time: 2018-09-17 14:48:08
  * @Describe: webpack打包公共配置项
  */
 'use strict';
@@ -328,16 +328,17 @@ const baseWebpackConfig = {
 			cacheGroups: {
 				// 抽离自己写的公共代码
 				commons: {
-					chunks: 'initial',
+					chunks: 'all',
 					name: 'common', // 打包后的文件名，任意命名
 					minChunks: 2, //分割前必须共享模块的最小块数。
-					minSize: 3000 // 只要超出3000字节就生成一个新包
+					minSize: 30 // 只要超出3000字节就生成一个新包
 				},
 				// 抽离第三方插件
 				vendor: {
 					test: /node_modules/, // 指定是node_modules下的第三方包
-					chunks: 'initial',
+					chunks: 'all',
 					name: 'vendor', // 打包后的文件名，任意命名
+					minSize: 2000, // 只要超出3000字节就生成一个新包
 					// 设置优先级，防止和自定义的公共代码提取时被覆盖，不进行打包
 					priority: 10
 				}

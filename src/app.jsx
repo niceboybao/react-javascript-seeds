@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-12 14:31:15
+ * @Last Modified time: 2018-09-17 18:06:32
  * @Describe: 工程入口文件
  */
 
@@ -30,6 +30,7 @@ import RootContainer from './containers/RootContainer';
 // import '!style-loader!css-loader!antd/dist/antd.min.css';
 import './styles/global.css';
 import './styles/app.css';
+import './sass/_variables.scss';
 
 // init hempConfig
 // window.hempConfig = new HEMPConfig();

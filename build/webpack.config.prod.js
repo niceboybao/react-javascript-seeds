@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 14:47:58
+ * @Last Modified time: 2018-09-17 15:01:28
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -11,6 +11,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.config.base.js');
@@ -100,10 +101,16 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 			},
 			canPrint: true //指示插件是否可以将消息打印到控制台，默认为 true
 		}),
+		// new CopyWebpackPlugin([
+		// 	{
+		// 		from: 'src/images/'
+		// 	}
+		// ]),
 
 		// 使用Imagemin压缩项目中的所有图像
 		// 确保插件位于添加图像的任何插件之后
 		new ImageminPlugin({
+			test: ' images / ** ',
 			disable: process.env.NODE_ENV !== 'production', // Disable during development
 			pngquant: {
 				quality: '95-100'
