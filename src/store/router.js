@@ -2,16 +2,18 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-12 15:56:43
+ * @Last Modified time: 2018-09-18 15:57:10
  * @Describe: 组件路由配置
  */
 'use strict';
 
-import React from 'react';
-
 // import component
 import Exception from '../containers/Exception';
 import Welcome from '../containers/Welcome';
+import Tag from '../containers/Tag';
+import Home from '../containers/Home';
+import About from '../containers/About';
+
 // demo
 import Team1 from '../containers/Demos/Team1';
 import Team2 from '../containers/Demos/Team2';
@@ -25,12 +27,29 @@ export default function createRoutes() {
 			exact: true, //true 表示严格匹配 false 正常匹配
 			component: Welcome
 		},
-
 		// welcome 首页
 		{
 			path: '/welcome',
 			exact: true, //true 表示严格匹配 false 正常匹配
 			component: Welcome
+		},
+		// 技术标签
+		{
+			path: '/tag',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: Tag
+		},
+		// 个人中心
+		{
+			path: '/home',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: Home
+		},
+		// 关于我
+		{
+			path: '/about',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: About
 		},
 
 		// demo

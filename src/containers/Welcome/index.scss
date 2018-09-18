@@ -9,10 +9,14 @@
 	position: relative;
 	.background {
 		position: absolute;
-        @extend %border;
-        z-index: -1;
+		@extend %border;
+		z-index: -1;
 		.img {
 			@extend %border;
 		}
+	}
+	.content {
+		@extend %border;
+		
 	}
 }

@@ -1,0 +1,29 @@
+#toolbar {
+	display: flex;
+	flex-direction: row;
+	height: 40px;
+	line-height: 40px;
+	.left {
+		width: 60%;
+		text-align: center;
+	}
+	.right {
+		flex: 1;
+		// text-align: center;
+		.item {
+			display: inline-block;
+			width: 80px;
+			text-align: center;
+			font-size: 15px;
+			font-weight: 800;
+			cursor: pointer;
+
+			&:hover {
+				background: #333;
+				color: #40a9ff;
+				-webkit-transition: color .3s;
+				transition: color .3s;
+			}
+		}
+	}
+}

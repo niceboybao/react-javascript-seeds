@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:20:08 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-14 16:14:07
+ * @Last Modified time: 2018-09-18 16:01:17
  * @Describe: Team1 一个经典的react-redux-saga流程组件(API注释尽量写在此组件下)
  */
 
@@ -11,17 +11,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import utils from '../../../utils';
+import style from './index.scss';
 import { CounterDisplay } from '../../../components/Demos/CounterDisplay';
 import { CounterControl } from '../../../components/Demos/CounterControl';
-//import css,scss 模块化
-import style from './style.scss';
 
 //dispatch action
 import { increment, decrement, initment, requestData } from './actions';
 
 // import { dataSelector, countSelector } from './selectors';
-
-
 
 const mapStateToProps = (state) => {
 	return {
