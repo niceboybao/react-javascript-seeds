@@ -1,0 +1,12 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-19 09:39:49 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 09:42:38
+ * @Describe: 当占位符选择器单独使用时（未通过 @extend 调用），不会编译到 CSS 文件中。
+ */
+
+ %border {
+	width: 100%;
+	height: 100%;
+}

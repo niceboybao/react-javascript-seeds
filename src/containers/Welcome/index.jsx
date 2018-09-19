@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-18 17:59:07
+ * @Last Modified time: 2018-09-19 20:48:14
  * @Describe: 首页
  */
 
@@ -13,29 +13,65 @@ import { Icon, Popover } from 'antd';
 import utils from '../../utils';
 import style from './index.scss';
 import ToolBar from './ToolBar';
-import Settings from './Settings';
+import Settings from '../../components/Settings';
 
 export default class Welcome extends React.Component {
 	constructor(props) {
 		super(props);
 		utils.burry('欢迎');
+
 		this.state = {};
+		this.random = '';
+
+		this.forkGitHub = this.forkGitHub.bind(this);
+	}
+
+	componentWillMount() {
+		this.randomBackground();
+	}
+
+	//随机生成背景图
+	randomBackground() {
+		const num = Math.round(Math.random() * 26);
+		const alp = String.fromCharCode(64 + parseInt(num)).toLowerCase();
+		this.random = '01';
+	}
+
+	// 跳转到GitHub
+	forkGitHub() {
+		window.open('https://github.com/niceboybao');
 	}
 
 	render() {
 		// <Icon type="loading" />
+		const random = this.random;
 
 		return (
 			<div id={style.welcome}>
 				{/*背景图*/}
-				<div className={style.background}>
-					<img className={style.img} src={utils.requireImg('welcome/google_01.jpeg')} alt="背景图" />
-				</div>
+				{random.length > 0 && (
+					<div className={style.background}>
+						<img
+							className={style.img}
+							src={utils.requireImg('welcome/background_' + random + '.jpg')}
+							alt="背景图"
+						/>
+					</div>
+				)}
+
 				{/*内容*/}
 				<div className={style.content}>
 					<div style={{ height: 20 }} />
 					<ToolBar />
-					<Settings />
+					<span className={style['left-top']}>天气</span>
+					<Settings show={true} text={true} />
+					<img
+						className={style['right-top']}
+						onClick={this.forkGitHub}
+						src={utils.requireImg('welcome/forkme.png')}
+						alt="fork me"
+					/>
+					<span className={style['right-bottom']}>Links</span>
 				</div>
 			</div>
 		);

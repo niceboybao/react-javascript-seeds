@@ -1,0 +1,18 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 23:24:00 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 10:30:54
+ * @Describe: 全局变量入口
+ */
+
+//  Sass 拓展了 @import 的功能，允许其导入 SCSS 或 Sass 文件。被导入的文件将合并编译到同一个 CSS 文件中，
+//  另外，被导入的文件中所包含的变量或者混合指令 (mixin) 都可以在导入的文件中使用。
+
+// 如果需要导入 SCSS 或者 Sass 文件，但又不希望将其编译为 CSS，只需要在文件名前添加下划线，
+// 这样会告诉 Sass 不要编译这些文件，但导入语句中却不需要添加下划线。
+
+@import 'variables';
+@import 'placeholder';
+@import 'functions';
+@import 'mixins';

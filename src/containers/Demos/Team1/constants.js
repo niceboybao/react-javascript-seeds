@@ -1,3 +1,10 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:32:49 
+ * @Last Modified by: guangwei.bao 
+ * @Last Modified time: 2018-09-18 22:32:49
+ * @Describe: 无
+ */
 //计数器方法
 export const INCREMENT = 'Team1/INCREMENT';
 export const DECREMENT = 'Team1/DECREMENT';

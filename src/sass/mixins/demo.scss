@@ -1,0 +1,28 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 23:37:59 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 10:25:09
+ * @Describe: 混合指令
+ */
+
+//  混合指令
+@mixin silly-links {
+	a {
+		color: blue;
+		background-color: red;
+	}
+}
+@include silly-links;
+
+// 带参数
+@mixin sexy-border($color, $width) {
+	border: {
+		color: $color;
+		width: $width;
+		style: dashed;
+	}
+}
+p {
+	@include sexy-border(blue, 1in);
+}

@@ -1,0 +1,53 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:33:52 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 18:34:42
+ * @Describe: 无
+ */
+@import '../../sass/index';
+
+%common {
+	position: absolute;
+	height: 40px;
+	bottom: 0;
+	left: 1%;
+	color: $welcome-font-color;
+	cursor: pointer;
+	font-size: 25px;
+	display: flex;
+	align-items: center;
+}
+
+@for $i from 1 through 2 {
+	.setting_#{$i} {
+		// 延伸复杂的选择器
+		// @extend a:hover;
+		@extend %common;
+		@if $i==1 {
+			opacity: $welcome-font-opacity;
+		} @else if $i==2 {
+			opacity: 1;
+		}
+
+		@for $i from 1 through 2 {
+			.icon_#{$i} {
+				@if $i==1 {
+					transform: rotate(-45deg) scale(1);
+				} @else if $i==2 {
+					transform: rotate(45deg) scale(1.3);
+				}
+				transition: transform .5s;
+			}
+		}
+		span {
+			font-size: px2rem(10px);
+		}
+	}
+}
+
+.content {
+	p {
+		cursor: pointer;
+	}
+}

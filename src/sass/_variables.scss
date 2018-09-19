@@ -1,11 +1,24 @@
 /*
  * @Author: guangwei.bao 
- * @Date: 2018-09-17 17:53:28 
+ * @Date: 2018-09-19 09:44:03 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-17 18:04:42
+ * @Last Modified time: 2018-09-19 17:41:18
+ * @Describe: 变量 $ (Variables: $)
  */
+@import './functions/px2rem';
 
-// Color system
+/*
+ * Color system
+ */
+//  主题色
+$theme-1-color: #0e0f11 !default;
 
-// fontSize system
-$big: 21px !default;
+// welcome
+$welcome-font-color: #ffffff !default;
+$welcome-font-opacity: 0.6 !default;
+$welcome-toolbar-height: 80px !default;
+
+/*
+ * fontSize system
+ */
+$big: px2rem(21px) !default;

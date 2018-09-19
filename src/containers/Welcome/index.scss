@@ -1,7 +1,12 @@
-%border {
-	width: 100%;
-	height: 100%;
-}
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 23:43:33 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 20:37:12
+ * @Describe: 无
+ */
+@import '../../sass/index';
+
 #welcome {
 	@extend %border;
 	background-image: url('../../images/welcome/overlay-vignette.png');
@@ -17,6 +22,32 @@
 	}
 	.content {
 		@extend %border;
-		
+		.left-top {
+			position: absolute;
+			top: 1%;
+			left: 1%;
+			color: #fff;
+		}
+		.left-bottom {
+			position: absolute;
+			bottom: 1%;
+			left: 1%;
+			color: #fff;
+		}
+		.right-top {
+			position: absolute;
+			top: 0;
+			right: 0;
+			color: #fff;
+			width: 120px;
+			height: 120px;
+			cursor: pointer;
+		}
+		.right-bottom {
+			position: absolute;
+			bottom: 1%;
+			right: 1%;
+			color: #fff;
+		}
 	}
 }

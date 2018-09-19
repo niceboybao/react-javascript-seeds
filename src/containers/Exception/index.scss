@@ -1,27 +1,34 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:32:18 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 11:32:15
+ * @Describe: 无
+ */
+@import '../../sass/index';
+
 #exception {
 	width: 100%;
 	height: 100%;
-    background: #f0f2f5;
-    position: relative;
-    padding-top: 10%;
-    
-    .box{
-        display: flex;
-        // width: 100%;
-        // height: 500px;
-        justify-content: center;
-        align-items: center;
-        .text{
-            text-align: center;
-            .font_1{
-                font-size: 70px;
-                font-weight: 800;
-            }
-            .font_2{
-                font-size: 20px;
-    line-height: 28px;
-                color: rgba(0, 0, 0, 0.45);
-            }
-        }
-    }
+	background: #f0f2f5;
+	position: relative;
+	padding-top: 10%;
+
+	.box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.text {
+			text-align: center;
+			.font_1 {
+				font-size: px2rem(70px);
+				font-weight: 800;
+			}
+			.font_2 {
+				font-size: px2rem(20px);
+				line-height: px2rem(28px);
+				color: rgba(0, 0, 0, 0.45);
+			}
+		}
+	}
 }

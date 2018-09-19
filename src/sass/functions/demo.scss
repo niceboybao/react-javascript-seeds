@@ -1,0 +1,19 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 23:37:59 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-19 10:24:11
+ * @Describe: 函数式指令
+ */
+
+// 函数式指令
+$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+	@return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar {
+	width: grid-width(5);
+}
