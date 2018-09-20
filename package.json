@@ -3,14 +3,11 @@
 	"version": "0.0.0",
 	"description": "a react project base on webpack4.x",
 	"main": "app.jsx",
-	"keywords": [
-		"react",
-		"redux",
-		"webpack"
-	],
+	"keywords": [ "react", "redux", "saga", "reselect", "webpack", "sass" ],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"clean": "rimraf www/*",
+		"clean": "npm run clean-cache && npm run clean-www",
+		"clean-www": "rimraf www/*",
 		"clean-cache": "rimraf .cache-loader/*",
 		"build": "webpack --progress --colors",
 		"build-dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.dev.js",
@@ -19,8 +16,8 @@
 		"dev": " cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --profile --progress --color --config ./build/webpack.config.dev.js",
 		"prod": " cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.prod.js",
 		"start": "npm run clean && npm run build && npm run dev",
-		"start-dev": "npm run clean-cache && npm run clean && npm run build-dev && npm run dev",
-		"start-prod": "npm run clean-cache  && npm run clean && npm run build-prod && npm run prod",
+		"start-dev": "npm run clean && npm run build-dev && npm run dev",
+		"start-prod": "npm run clean && npm run build-prod && npm run prod",
 		"open-stats": "node node_modules/.bin/webpack-bundle-analyzer stats.json"
 	},
 	"author": "guangwei.bao",
