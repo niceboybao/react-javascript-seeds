@@ -2,52 +2,76 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 23:43:33 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 20:37:12
+ * @Last Modified time: 2018-09-20 16:40:42
  * @Describe: 无
  */
 @import '../../sass/index';
 
 #welcome {
-	@extend %border;
+	@extend %border-full;
 	background-image: url('../../images/welcome/overlay-vignette.png');
 	background-size: 100% 100%;
 	position: relative;
 	.background {
 		position: absolute;
-		@extend %border;
+		@extend %border-full;
 		z-index: -1;
 		.img {
-			@extend %border;
+			@extend %border-full;
 		}
 	}
 	.content {
-		@extend %border;
-		.left-top {
+		@extend %border-full;
+
+		// @each $i in left, right {
+		// 	$i: 1%;
+		// 	left:1%;
+		// 	@each $j in top, bottom {
+		// 		$j: 1%;
+		// 		.#{$i}-#{$j} {
+		// 			position: absolute;
+		// 			color: $welcome-font-color;
+		// 			cursor: pointer;
+
+		// 		}
+		// 	}
+		// }
+
+		%angle {
 			position: absolute;
-			top: 1%;
-			left: 1%;
-			color: #fff;
-		}
-		.left-bottom {
-			position: absolute;
-			bottom: 1%;
-			left: 1%;
-			color: #fff;
-		}
-		.right-top {
-			position: absolute;
-			top: 0;
-			right: 0;
-			color: #fff;
-			width: 120px;
-			height: 120px;
+			color: $welcome-font-color;
+			opacity: $welcome-font-opacity;
 			cursor: pointer;
 		}
+		.left-top {
+			@extend %angle;
+			top: 1%;
+			left: 1%;
+		}
+		.left-bottom {
+			@extend %angle;
+			bottom: 1%;
+			left: 1%;
+		}
+		.right-top {
+			@extend %angle;
+			top: 0;
+			right: 0;
+			width: 120px;
+			height: 120px;
+		}
 		.right-bottom {
-			position: absolute;
+			@extend %angle;
 			bottom: 1%;
 			right: 1%;
-			color: #fff;
+			padding: 2px 5px;
+		}
+
+		@each $i in left-top, left-bottom, right-top, right-bottom {
+			.#{$i}:hover {
+				opacity: 1;
+				transition: opacity .3s;
+			}
 		}
 	}
 }

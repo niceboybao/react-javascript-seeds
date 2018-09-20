@@ -2,21 +2,20 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 22:33:52 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 18:34:42
+ * @Last Modified time: 2018-09-20 16:41:54
  * @Describe: 无
  */
 @import '../../sass/index';
 
 %common {
-	position: absolute;
+	// position: absolute;
 	height: 40px;
-	bottom: 0;
-	left: 1%;
-	color: $welcome-font-color;
+	// bottom: 0;
+	// left: 1%;
+	// color: $welcome-font-color;
 	cursor: pointer;
 	font-size: 25px;
-	display: flex;
-	align-items: center;
+	@include flex-center(row,center,center);
 }
 
 @for $i from 1 through 2 {
@@ -26,7 +25,7 @@
 		@extend %common;
 		@if $i==1 {
 			opacity: $welcome-font-opacity;
-		} @else if $i==2 {
+		} @if $i==2 {
 			opacity: 1;
 		}
 
@@ -44,6 +43,10 @@
 			font-size: px2rem(10px);
 		}
 	}
+	// .setting_#{$i}:hover {
+	// 	opacity: 1;
+	// 	transition: opacity .3s;
+	// }
 }
 
 .content {

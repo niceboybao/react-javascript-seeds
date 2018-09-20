@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 20:48:14
+ * @Last Modified time: 2018-09-20 16:44:27
  * @Describe: 首页
  */
 
@@ -63,8 +63,11 @@ export default class Welcome extends React.Component {
 				<div className={style.content}>
 					<div style={{ height: 20 }} />
 					<ToolBar />
+
 					<span className={style['left-top']}>天气</span>
-					<Settings show={true} text={true} />
+					<div className={style['left-bottom']}>
+						<Settings show={true} text={true} />
+					</div>
 					<img
 						className={style['right-top']}
 						onClick={this.forkGitHub}

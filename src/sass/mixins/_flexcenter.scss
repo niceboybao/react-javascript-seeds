@@ -1,0 +1,30 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-19 18:40:27 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-20 15:58:56
+ * @Describe: flex 布局居中的方法
+ */
+
+// // 带参数
+// @mixin sexy-border($color, $width) {
+// 	border: {
+// 		color: $color;
+// 		width: $width;
+// 		style: dashed;
+// 	}
+// }
+// p {
+// 	@include sexy-border(blue, 1in);
+// }
+
+@mixin flex-center($direction,$x,$y) {
+	display: flex;
+	flex-direction: $direction;
+	@if $x==center {
+		align-items: $x;
+	}
+	@if $y==center {
+		justify-content: $y;
+	}
+}

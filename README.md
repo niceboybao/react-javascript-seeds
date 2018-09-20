@@ -1,4 +1,4 @@
-# a react project base on webpack4.x
+# a react blogs project base on webpack4.x
 
 ## 开发环境
 

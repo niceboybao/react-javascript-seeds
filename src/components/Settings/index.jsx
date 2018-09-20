@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 17:08:40 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 18:33:57
+ * @Last Modified time: 2018-09-20 16:43:29
  * @Describe: 设置页面
  */
 
@@ -69,12 +69,10 @@ export default class Home extends React.Component {
 		);
 
 		return (
-			<Popover placement="topLeft" content={content} trigger="click">
-				<div onClick={this.toggleSetting} className={show ? style.setting_2 : style.setting_1}>
-					<Icon className={show ? style.icon_2 : style.icon_1} type="setting" theme="outlined" />
-					<span>&nbsp;&nbsp;个性化设置</span>
-				</div>
-			</Popover>
+			<div onClick={this.toggleSetting} className={show ? style.setting_2 : style.setting_1}>
+				<Icon className={show ? style.icon_2 : style.icon_1} type="setting" theme="outlined" />
+				<span>&nbsp;&nbsp;个性化设置</span>
+			</div>
 		);
 	}
 }

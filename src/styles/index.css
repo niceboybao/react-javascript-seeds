@@ -1,0 +1,81 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:31:16 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-20 17:54:36
+ * @Describe: 无
+ */
+#root {
+	width: 100%;
+	height: 100%;
+}
+.body {
+	width: 100%;
+	height: 100%;
+	background: #f9f9f9;
+}
+.content {
+	height: 70%;
+	width: 100%;
+	font-size: 50px;
+	color: #bfaaaa;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 800;
+	opacity: 0.8;
+}
+
+.content .loading {
+	position: relative;
+	width: 270px;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+}
+
+/* 动画方式实现一： */
+.content .loading .shadow1 {
+	height: 100%;
+	width: 30px;
+	position: absolute;
+	transform: skew(-30px);
+	-webkit-transform: skew(30deg);
+	background-color: #fff;
+	z-index: 1;
+	/* left: 50px; */
+	opacity: 0.5;
+	animation: move .7s infinite;
+	-webkit-animation: move .7s infinite;
+}
+
+@keyframes move {
+	from {
+		left: 0;
+	}
+	to {
+		left: 230px;
+	}
+}
+
+@-webkit-keyframes move {
+	from {
+		left: 0;
+	}
+	to {
+		left: 230px;
+	}
+}
+
+/* 动画方式实现二： */
+.content .loading .shadow2 {
+	height: 100%;
+	width: 30px;
+	position: absolute;
+	/* transform: skew(-30deg); */
+	background-color: #fff;
+	z-index: 1;
+	opacity: 0.5;
+	transform: skew(30deg) translate(230px);
+	transition: transform 5s;
+}

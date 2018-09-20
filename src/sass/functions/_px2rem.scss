@@ -2,15 +2,11 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 23:37:59 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 11:05:43
+ * @Last Modified time: 2018-09-20 15:35:09
  * @Describe: px和rem的单位转换
  */
 
 $baseFontSize: 16px; //默认基准font-size
-
-//  @mixin px2rem($name, $px){
-//    #{$name}: $px / $baseFontSize * 1rem;
-//  }
 
 // px转rem(函数式指令)
 @function px2rem($px) {
