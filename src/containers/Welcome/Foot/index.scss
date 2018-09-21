@@ -1,0 +1,65 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-19 18:38:52 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-21 15:38:52
+ * @Describe: 无
+ */
+@import '../../../sass/index';
+
+@keyframes go-move {
+	from {
+		height: 0;
+		opacity: 0;
+	}
+	to {
+		height: 20px;
+		opacity: $welcome-font-opacity;
+	}
+}
+@keyframes back-move {
+	0% {
+		height: 20px;
+		opacity: $welcome-font-opacity;
+	}
+	100% {
+		height: 0;
+		opacity: 0;
+	}
+}
+
+.foot {
+	width: 100%;
+	font-size: 20px;
+	height: 120px;
+	font-weight: 300;
+	@include flex-center(column,center,center);
+	.text {
+		width: 50%;
+		.text1 {
+			text-align: center;
+		}
+		.text2 {
+			text-align: center;
+			// height: 0;
+			// opacity: 0;
+			// transition: height 1s;
+			// transition: opacity 1s;
+			animation: back-move .3s;
+			animation-fill-mode: forwards;
+			.heart {
+				cursor: pointer;
+			}
+		}
+		&:hover {
+			.text2 {
+				// height: 20px;
+				// opacity: 1;
+				// transition: height opacity 1s;
+				// transition: opacity 1s;
+				animation: go-move .3s;
+				animation-fill-mode: forwards;
+			}
+		}
+	}
+}

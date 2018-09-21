@@ -1,7 +1,31 @@
 /*
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:38:59 
- * @Last Modified by: guangwei.bao 
- * @Last Modified time: 2018-09-19 18:38:59
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-20 20:56:36
  * @Describe: 无
  */
+@import '../../../sass/index';
+
+$size: px2rem(25px);
+#weather {
+	.temp {
+		opacity: 1;
+		font-size: $size;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		img {
+			width: $size;
+			height: $size;
+		}
+		span {
+			padding-left: px2rem(10px);
+		}
+	}
+	.local {
+		opacity: $welcome-font-opacity;
+		text-align: center;
+		font-size: $size/2;
+	}
+}

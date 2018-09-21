@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 23:43:33 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-20 16:40:42
+ * @Last Modified time: 2018-09-21 14:49:11
  * @Describe: 无
  */
 @import '../../sass/index';
@@ -20,31 +20,43 @@
 			@extend %border-full;
 		}
 	}
+
+	// 中间部分
 	.content {
 		@extend %border-full;
+		color: $welcome-font-color;
+		display: flex;
+		flex-direction: column;
+		.body {
+			@extend %border-full;
+			flex: 1;
+			@extend %flex-center;
+			.date {
+				@include flex-center(column,center,center);
+				font-weight: $welcome-font-weight;
+				div {
+					font-size: 165px;
+				}
+				span {
+					font-size: 55px;
+				}
+			}
+		}
+		
+	}
 
-		// @each $i in left, right {
-		// 	$i: 1%;
-		// 	left:1%;
-		// 	@each $j in top, bottom {
-		// 		$j: 1%;
-		// 		.#{$i}-#{$j} {
-		// 			position: absolute;
-		// 			color: $welcome-font-color;
-		// 			cursor: pointer;
-
-		// 		}
-		// 	}
-		// }
-
+	// 4个角落
+	.angle {
 		%angle {
 			position: absolute;
 			color: $welcome-font-color;
 			opacity: $welcome-font-opacity;
+			font-weight: $welcome-font-weight;
 			cursor: pointer;
 		}
 		.left-top {
 			@extend %angle;
+			opacity: 1;
 			top: 1%;
 			left: 1%;
 		}
@@ -67,7 +79,7 @@
 			padding: 2px 5px;
 		}
 
-		@each $i in left-top, left-bottom, right-top, right-bottom {
+		@each $i in left-bottom, right-top, right-bottom {
 			.#{$i}:hover {
 				opacity: 1;
 				transition: opacity .3s;

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:25:16 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 16:34:11
+ * @Last Modified time: 2018-09-21 16:21:05
  */
 
 // redux-saga https://juejin.im/post/5ad83a70f265da503825b2b4
@@ -21,7 +21,6 @@ import {
     */
 	takeLatest
 } from 'redux-saga/effects';
-import { Action } from 'redux-actions';
 // 用于Node和Browserify的同构WHATWG Fetch API
 import fetch from 'isomorphic-fetch';
 

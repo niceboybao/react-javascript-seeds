@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:40:27 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-20 15:58:56
+ * @Last Modified time: 2018-09-20 21:41:49
  * @Describe: flex 布局居中的方法
  */
 
@@ -22,9 +22,9 @@
 	display: flex;
 	flex-direction: $direction;
 	@if $x==center {
-		align-items: $x;
+		justify-content: $x;
 	}
 	@if $y==center {
-		justify-content: $y;
+		align-items: $y;
 	}
 }
