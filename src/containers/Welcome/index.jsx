@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-21 17:58:48
+ * @Last Modified time: 2018-09-25 18:59:06
  * @Describe: 首屏
  */
 
@@ -18,11 +18,12 @@ import Weather from './Weather';
 import Links from './Links';
 import Foot from './Foot';
 
-import { getLocation } from './actions';
+import { getLocation, getWeather } from './actions';
 
 const mapStateToProps = (state) => {
 	return {
-		location: state.welcomeReducer.location
+		location: state.welcomeReducer.location,
+		weather: state.welcomeReducer.weather
 	};
 };
 
@@ -31,6 +32,10 @@ const mapDispatchToProps = (dispatch) => {
 		// 调用地图获取当前位置
 		getLocationData: (city) => {
 			dispatch(getLocation(city));
+		},
+		// 调用天气API
+		getWeatherData: (city) => {
+			dispatch(getWeather(city));
 		}
 	};
 };
@@ -66,7 +71,10 @@ class Welcome extends React.Component {
 		// let WeatherLists = {};
 		myCity.get((result) => {
 			console.log('城市名称: ' + result.name); //城市名称
+			// 保存地理位置到数据流
 			this.props.getLocationData(result);
+			// 调用天气API
+			this.props.getWeatherData(result.name);
 			// if (result.name) {
 			//     /*通过当前位置城市信息获取天气*/
 			//     axios.get('https://free-api.heweather.com/v5/weather?key=19713447578c4afe8c12a351d46ea922', {
@@ -96,6 +104,8 @@ class Welcome extends React.Component {
 	render() {
 		// <Icon type="loading" />
 		const random = this.random;
+
+		const { weather, location } = this.props;
 
 		return (
 			<div id={style.welcome}>
@@ -127,7 +137,7 @@ class Welcome extends React.Component {
 				{/*4个角落*/}
 				<div className={style.angle}>
 					<span className={style['left-top']}>
-						<Weather />
+						<Weather city={location.name} />
 					</span>
 					<span className={style['left-bottom']}>
 						<Settings show={true} text={true} />

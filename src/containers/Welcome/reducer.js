@@ -2,12 +2,12 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 16:16:46 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-21 17:59:03
+ * @Last Modified time: 2018-09-25 14:43:20
  * @Describe: 无
  */
 import { handleActions } from 'redux-actions';
 
-import { GETLOCATION, GETLOCATIONSUCCESS, GETLOCATIONERROR } from './constants';
+import { GETLOCATION, GETWEATHERSUCCESS, GETWEATHERERROR } from './constants';
 
 import { RN_WELCOME } from '../../store/constants';
 
@@ -20,20 +20,30 @@ export const welcomeReducer = handleActions(
 				location: action.payload
 			});
 		},
-		[GETLOCATIONSUCCESS]: (state, action) => {
-			return Object.assign(
-				{},
-				state,
-				{
-					// location: action.payload
-				}
-			);
+		// [GETLOCATIONSUCCESS]: (state, action) => {
+		// 	return Object.assign(
+		// 		{},
+		// 		state,
+		// 		{
+		// 			// location: action.payload
+		// 		}
+		// 	);
+		// },
+		// [GETLOCATIONERROR]: (state, action) => {
+		// 	return Object.assign({}, state, {});
+		// },
+
+		[GETWEATHERSUCCESS]: (state, action) => {
+			return Object.assign({}, state, {
+				weather: action.payload
+			});
 		},
-		[GETLOCATIONERROR]: (state, action) => {
+		[GETWEATHERERROR]: (state, action) => {
 			return Object.assign({}, state, {});
 		}
 	},
 	{
-		location: {}
+		location: {},
+		weather: {}
 	}
 );

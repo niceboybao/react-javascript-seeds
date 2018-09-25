@@ -2,34 +2,39 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 15:51:49 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-21 16:37:43
+ * @Last Modified time: 2018-09-25 19:27:48
  * @Describe: 无
  */
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
 // 用于Node和Browserify的同构WHATWG Fetch API
-import fetch from 'isomorphic-fetch';
+// import fetch from 'isomorphic-fetch';
+import utils from '../../utils';
 
-import { GETLOCATION } from './constants';
-import { getLocationSuccess, getLocationError } from './actions';
+import { GETWEATHER } from './constants';
+import { getWeatherSuccess, getWeatherError } from './actions';
 
+// 获取天气API接口
 function* fetchData1() {
+	const url = 'https://free-api.heweather.com/v5/weather?key=19713447578c4afe8c12a351d46ea922&city=郑州市';
+	// const params = {};
 	try {
-		const response = yield call(fetch, '../../mock/welcome/test.json');
+		const api = () => utils.fetch(url, 'GET');
+		const response = yield call(api);
 		if (response.ok) {
 			const json = yield response.json();
-			console.log(' welcome getLocationSuccess');
+			console.log(' welcome getWeatherSuccess');
 			// put是saga对Redux中dispatch方法的一个封装
-			yield put(getLocationSuccess(json));
+			yield put(getWeatherSuccess(json));
 		} else {
-			console.log('welcome getLocationError');
-			yield put(getLocationError(response.status));
+			console.log('welcome getWeatherError');
+			yield put(getWeatherError(response.status));
 		}
 	} catch (e) {
-		console.log('welcome getLocationFaild');
-		yield put(getLocationError(e.message));
+		console.log('welcome getWeatherFaild');
+		yield put(getWeatherError(e.message));
 	}
 }
 
 export default function* saga() {
-	yield takeEvery(GETLOCATION, fetchData1);
+	yield takeEvery(GETWEATHER, fetchData1);
 }
