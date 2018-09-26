@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-25 18:59:06
+ * @Last Modified time: 2018-09-26 17:19:56
  * @Describe: 首屏
  */
 
@@ -75,17 +75,6 @@ class Welcome extends React.Component {
 			this.props.getLocationData(result);
 			// 调用天气API
 			this.props.getWeatherData(result.name);
-			// if (result.name) {
-			//     /*通过当前位置城市信息获取天气*/
-			//     axios.get('https://free-api.heweather.com/v5/weather?key=19713447578c4afe8c12a351d46ea922', {
-			//         params: {
-			//             city: result.name
-			//         }
-			//     }).then(function (res) {
-			//         WeatherLists = res.data.HeWeather5[0];
-			//         console.log(WeatherLists);
-			//     });
-			// }
 		});
 	}
 
@@ -137,7 +126,7 @@ class Welcome extends React.Component {
 				{/*4个角落*/}
 				<div className={style.angle}>
 					<span className={style['left-top']}>
-						<Weather city={location.name} />
+						<Weather location={location} weather={weather} />
 					</span>
 					<span className={style['left-bottom']}>
 						<Settings show={true} text={true} />

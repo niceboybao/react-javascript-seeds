@@ -2,20 +2,15 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-25 16:48:13 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-25 19:23:58
+ * @Last Modified time: 2018-09-26 16:03:54
  * @Describe: 接口场景处理(对工程接口的统一封装并暴露)
  */
 'use strict';
 import 'isomorphic-fetch';
-
-// 对象类型转换
-function parseJSON(response) {
-	// return response.json();
-	return response.json();
-}
+import { objToString } from './params.js';
 
 // 接口异常状态处理
-function checkStatus(response) {
+const checkStatus = function(response) {
 	// 正常状态
 	if (response.status >= 200 && response.status < 300) {
 		return response;
@@ -24,32 +19,51 @@ function checkStatus(response) {
 	const error = new Error(response.statusText);
 	error.response = response;
 	throw error;
-}
+};
 
-function obj(params) {}
+// 返回结果抽取
+const parseJSON = function(response) {
+	if (response.ok) {
+		return response.json();
+		console.log('fetch success');
+	} else {
+		fetchError(response.ok);
+	}
+};
+
+// 接口异常方法
+const fetchError = function(log) {
+	console.error(log);
+};
 
 // 接口场景处理
-export function request(url, params, method = 'GET') {
-	debugger;
+export function request(obj) {
 	let _url = '';
-	if (method.toUpperCase() === 'GET') {
-        // for item in params{
-
-        // }
+	if (obj.method.toUpperCase() === 'GET') {
+		_url = objToString(obj.params);
+		_url = obj.url + '?' + _url;
+	} else if (obj.method.toUpperCase() === 'POST') {
+		_url = obj.url;
 	}
-	_url = url + _url;
-	return fetch(_url, {
-		method: method.toUpperCase(),
-		credentials: 'include',
-		headers: {
-			Accept: 'application/json, text/plain, */*',
-			'Content-Type': 'application/json',
-			'Cache-Control': 'no-cache'
-		},
-		body: method.toUpperCase() === 'POST' ? JSON.stringify(params) : null
-	})
-		.then(checkStatus)
-		.then(parseJSON);
+
+	return (
+		fetch(_url, {
+			method: obj.method.toUpperCase(),
+			credentials: 'include',
+			headers: {
+				Accept: 'application/json, text/plain, */*',
+				'Content-Type': 'application/json',
+				'Cache-Control': 'no-cache'
+			},
+			body: obj.method.toUpperCase() === 'POST' ? JSON.stringify(obj.params) : null
+		})
+			.then(checkStatus)
+			.then(parseJSON)
+			// .catch((error) => {
+			// 	// consolr.log(error);
+			// })
+			.catch((error) => fetchError(error))
+	);
 }
 
 // fetch(url,{ // url: 请求地址
