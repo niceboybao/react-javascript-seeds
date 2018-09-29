@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 15:51:49 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-26 17:43:19
+ * @Last Modified time: 2018-09-27 00:45:49
  * @Describe: 无
  */
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
@@ -19,8 +19,8 @@ function* fetchData1(action) {
 	const url = 'https://free-api.heweather.com/v5/weather';
 	const params = {
 		key: configClient.weather_key,
-		// city: action.payload
-		city: '成都'
+		city: action.payload
+		// city: '成都'
 	};
 	try {
 		const api = () =>

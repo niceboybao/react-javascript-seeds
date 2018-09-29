@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 10:56:46 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-26 14:36:37
+ * @Last Modified time: 2018-09-28 18:10:20
  * @Describe: 合并工具类，方便输出
  */
 'use strict';
@@ -15,10 +15,14 @@ import { burry } from './burry.js';
 import { request } from './fetch.js';
 // 接口参数处理(多种场景)
 import { objToString } from './params.js';
+// 过滤掉空字段 && 判断字段是否为空
+import { _isNotEmpty, _filterEmpty } from './empty.js';
 
 export default {
 	requireImg: requireImg,
 	burry: burry,
 	fetch: request,
-	objToString: objToString
+	objToString: objToString,
+	isNotEmpty: _isNotEmpty,
+	filterEmpty: _filterEmpty
 };

@@ -6,8 +6,5 @@
 /.vscode
 /.history
 /.cache-loader
-/src_bak
 /docs/task.md
 /package.ts.json
-/webpack.config.ts.js
-/webpack.vendor.ts.js
