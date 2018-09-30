@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:38:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-28 18:17:34
+ * @Last Modified time: 2018-09-30 15:01:51
  * @Describe: 天气组件
  */
 
@@ -55,7 +55,6 @@ export default class Weather extends React.Component {
 		if (utils.isNotEmpty(weather)) {
 			_img = this.weatherImg();
 		}
-		debugger;
 		return (
 			<div id={style.weather}>
 				{utils.isNotEmpty(weather) && (

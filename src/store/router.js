@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-18 15:57:10
+ * @Last Modified time: 2018-09-30 17:14:14
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -18,6 +18,7 @@ import About from '../containers/About';
 import Team1 from '../containers/Demos/Team1';
 import Team2 from '../containers/Demos/Team2';
 import Team3 from '../containers/Demos/Team3';
+import Team4 from '../containers/Demos/Team4';
 
 export default function createRoutes() {
 	return [
@@ -69,6 +70,10 @@ export default function createRoutes() {
 		{
 			path: '/demo/team3',
 			component: Team3
+		},
+		{
+			path: '/demo/team4',
+			component: Team4
 		},
 
 		// Exception

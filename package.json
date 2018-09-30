@@ -3,7 +3,14 @@
 	"version": "0.0.0",
 	"description": "a react project base on webpack4.x",
 	"main": "app.jsx",
-	"keywords": [ "react", "redux", "saga", "reselect", "webpack", "sass" ],
+	"keywords": [
+		"react",
+		"redux",
+		"saga",
+		"reselect",
+		"webpack",
+		"sass"
+	],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "npm run clean-cache && npm run clean-www",
@@ -66,6 +73,7 @@
 		"isomorphic-fetch": "^2.2.1",
 		"loglevel": "^1.6.1",
 		"react": "^16.4.0",
+		"react-copy-to-clipboard": "^5.0.1",
 		"react-dom": "^16.4.0",
 		"react-hot-loader": "^4.3.6",
 		"react-redux": "^5.0.7",

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 11:23:43 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-19 18:07:54
+ * @Last Modified time: 2018-09-30 16:08:36
  * @Describe: 导航条 
  */
 import React from 'react';
@@ -36,6 +36,9 @@ export default class ToolBar extends React.Component {
 					</Link>
 					<Link to={'/about'}>
 						<div className={style.item}>关于我</div>
+					</Link>
+					<Link to={'/demo'}>
+						<div className={style.item}>Demo</div>
 					</Link>
 				</div>
 			</div>

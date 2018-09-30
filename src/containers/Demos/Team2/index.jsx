@@ -1,9 +1,9 @@
 /*
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 22:32:27 
- * @Last Modified by: guangwei.bao 
- * @Last Modified time: 2018-09-18 22:32:27
- * @Describe: 无
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-30 16:28:19
+ * @Describe:  有reselect  redux用@的写法 实现一个sagas取消
  */
 import React from 'react';
 import { connect } from 'react-redux';

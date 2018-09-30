@@ -1,3 +1,10 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:32:27 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-09-30 17:10:38
+ * @Describe:  有个想不起来的经典案例可以放着呢
+ */
 import React from 'react';
 import { connect } from 'react-redux';
 import utils from '../../../utils';
