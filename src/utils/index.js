@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 10:56:46 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-28 18:10:20
+ * @Last Modified time: 2018-10-13 17:36:57
  * @Describe: 合并工具类，方便输出
  */
 'use strict';
@@ -17,6 +17,8 @@ import { request } from './fetch.js';
 import { objToString } from './params.js';
 // 过滤掉空字段 && 判断字段是否为空
 import { _isNotEmpty, _filterEmpty } from './empty.js';
+// 全局提示框
+import { tips } from './message.js';
 
 export default {
 	requireImg: requireImg,
@@ -24,5 +26,6 @@ export default {
 	fetch: request,
 	objToString: objToString,
 	isNotEmpty: _isNotEmpty,
-	filterEmpty: _filterEmpty
+	filterEmpty: _filterEmpty,
+	message: tips
 };

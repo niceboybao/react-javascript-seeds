@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-30 17:12:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-30 17:57:35
+ * @Last Modified time: 2018-10-13 17:47:31
  * @Describe: 实现一个react 文字拷贝
  * https://github.com/nkbt/react-copy-to-clipboard
  */
@@ -18,13 +18,18 @@ export default class Team4 extends React.Component {
 		super(props);
 		utils.burry('Team4');
 		this.state = {
-			text: '实现一个react 文字拷贝'
+			text: Math.floor(Math.random() * 1e18 + 1)
 		};
 		this.onCopy = this.onCopy.bind(this);
+		this.copyButton = this.copyButton.bind(this);
 	}
 
 	onCopy() {
 		console.log('onCopy');
+	}
+	copyButton() {
+		// utils.message.loading('开始加载！');
+		utils.message.success('复制成功！');
 	}
 
 	render() {
@@ -34,7 +39,9 @@ export default class Team4 extends React.Component {
 				<div>
 					<span>{text}</span>
 					<CopyToClipboard text={text} onCopy={this.onCopy}>
-						<Button type="primary">复制</Button>
+						<Button onClick={this.copyButton} type="primary">
+							复制
+						</Button>
 					</CopyToClipboard>
 				</div>
 			</div>
