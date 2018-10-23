@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-26 17:19:56
+ * @Last Modified time: 2018-10-15 17:39:13
  * @Describe: 首屏
  */
 
@@ -59,6 +59,7 @@ class Welcome extends React.Component {
 		this.getBaiDuApi();
 	}
 
+	// 调用地图获取当前位置
 	getBaiDuApi() {
 		// let oHead = document.getElementsByTagName('HEAD').item(0);
 		// let oScript = document.createElement('script');

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-11 13:47:28
+ * @Last Modified time: 2018-10-18 09:55:01
  * @Describe: 测试环境打包配置项
  */
 'use strict';
@@ -49,7 +49,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		// 不监听的文件或文件夹，支持正则匹配。默认为空
 		// ignored: /node_modules/,
 		// 配置 DevServer HTTP 服务器的文件根目录。 默认情况下为当前执行目录，通常是项目根目录
-		contentBase: path.join(__dirname, '../www')
+		contentBase: path.join(__dirname, '../www'),
+		// disableHostCheck:true  ??
 	},
 
 	/*
