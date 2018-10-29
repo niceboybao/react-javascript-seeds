@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:20:08 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-18 16:01:17
+ * @Last Modified time: 2018-10-29 17:32:20
  * @Describe: Team1 一个经典的react-redux-saga流程组件(API注释尽量写在此组件下)
  */
 
@@ -158,7 +158,7 @@ class Team1 extends React.Component {
 						<div>接口500测试</div>
 					</Link>
 					<Link to={'/exception/401'}>
-						<div>接口403权限问题</div>
+						<div>接口401权限问题</div>
 					</Link>
 				</div>
 			</div>

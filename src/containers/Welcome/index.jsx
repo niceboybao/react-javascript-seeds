@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-15 17:39:13
+ * @Last Modified time: 2018-10-29 17:37:46
  * @Describe: 首屏
  */
 
@@ -61,12 +61,6 @@ class Welcome extends React.Component {
 
 	// 调用地图获取当前位置
 	getBaiDuApi() {
-		// let oHead = document.getElementsByTagName('HEAD').item(0);
-		// let oScript = document.createElement('script');
-		// oScript.type = 'text/javascript';
-		// oScript.src = 'http://api.map.baidu.com/api?v=2.0&ak=4IU3oIAMpZhfWZsMu7xzqBBAf6vMHcoa';
-		// oHead.appendChild(oScript);
-
 		let BMap = window.BMap; //取出window中的BMap对象
 		let myCity = new BMap.LocalCity();
 		// let WeatherLists = {};

@@ -1,0 +1,27 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-10-29 16:39:20 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-10-29 17:03:39
+ * @Describe: 无
+ */
+
+#demo {
+	width: 100%;
+	height: 100%;
+	.ant-layout-header {
+		background: #fff;
+		margin: 0 16px;
+		display: flex;
+		flex-direction: column;
+		line-height: 25px;
+        justify-content: center;
+        .describe{
+            display: flex;
+        }
+        .weight{
+            font-weight: 800;
+            width: 80px;
+        }
+	}
+}

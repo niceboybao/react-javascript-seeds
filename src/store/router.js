@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-25 10:24:26
+ * @Last Modified time: 2018-10-29 15:05:37
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -15,81 +15,95 @@ import Home from '../containers/Home';
 import About from '../containers/About';
 
 // demo
+import Demos from '../containers/Demos/';
 import Team1 from '../containers/Demos/Team1';
 import Team2 from '../containers/Demos/Team2';
 import Team3 from '../containers/Demos/Team3';
 import Team4 from '../containers/Demos/Team4';
 import NoRedux from '../containers/Demos/NoRedux';
 
-export default function createRoutes() {
+// 全屏组件路由(一级路由)
+export function createRoutes() {
 	return [
 		// default router
 		{
 			path: '/',
 			exact: true, //true 表示严格匹配 false 正常匹配
-			component: Welcome
+			component: Welcome,
+			level: 1 //  路由组件层级
 		},
 		// welcome 首页
 		{
 			path: '/welcome',
 			exact: true, //true 表示严格匹配 false 正常匹配
-			component: Welcome
+			component: Welcome,
+			level: 1 //  路由组件层级
 		},
 		// 技术标签
 		{
 			path: '/tag',
 			exact: true, //true 表示严格匹配 false 正常匹配
-			component: Tag
+			component: Tag,
+			level: 1 //  路由组件层级
 		},
 		// 个人中心
 		{
 			path: '/home',
 			exact: true, //true 表示严格匹配 false 正常匹配
-			component: Home
+			component: Home,
+			level: 1 //  路由组件层级
 		},
 		// 关于我
 		{
 			path: '/about',
 			exact: true, //true 表示严格匹配 false 正常匹配
-			component: About
+			component: About,
+			level: 1 //  路由组件层级
 		},
 
 		// demo
 		{
 			path: '/demo',
-			exact: true, //true 表示严格匹配 false 正常匹配
-			component: Team1
+			// exact: true, //true 表示严格匹配 false 正常匹配
+			component: Demos,
+			level: 1 //  路由组件层级
 		},
 		{
 			path: '/demo/team1',
-			component: Team1
+			component: Team1,
+			level: 2 //  路由组件层级
 		},
 		{
 			path: '/demo/team2',
-			component: Team2
+			component: Team2,
+			level: 2 //  路由组件层级
 		},
 		{
 			path: '/demo/team3',
-			component: Team3
+			component: Team3,
+			level: 2 //  路由组件层级
 		},
 		{
 			path: '/demo/team4',
-			component: Team4
+			component: Team4,
+			level: 2 //  路由组件层级
 		},
 		{
 			path: '/demo/noRedux',
-			component: NoRedux
+			component: NoRedux,
+			level: 2 //  路由组件层级
 		},
-
 		// Exception
 		{
 			path: '/exception/:id',
-			component: Exception
+			component: Exception,
+			level: 1 //  路由组件层级
 		},
 		// when none of the above match, <Exception> will be rendered
 		{
 			path: '*',
-			component: Exception
+			component: Exception,
+			level: 1 //  路由组件层级
 		}
 
 		// {
@@ -148,4 +162,36 @@ export default function createRoutes() {
 	//         </Route>
 	//     </Router>
 	// );
+}
+
+// demo组件路由(二级路由)
+export function createDemosRoutes() {
+	return [
+		// demo
+		{
+			path: '/demo',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: Team1
+		},
+		{
+			path: '/demo/team1',
+			component: Team1
+		},
+		{
+			path: '/demo/team2',
+			component: Team2
+		},
+		{
+			path: '/demo/team3',
+			component: Team3
+		},
+		{
+			path: '/demo/team4',
+			component: Team4
+		},
+		{
+			path: '/demo/noRedux',
+			component: NoRedux
+		}
+	];
 }
