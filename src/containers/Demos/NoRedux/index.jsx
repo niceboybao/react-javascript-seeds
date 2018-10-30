@@ -1,8 +1,8 @@
 /*
  * @Author: guangwei.bao 
  * @Date: 2018-10-25 10:13:24 
- * @Last Modified by: guangwei.bao 
- * @Last Modified time: 2018-10-25 10:13:24
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-10-30 21:03:41
  * @Describe: 实现一个没有redux的父子组件交互
  */
 
@@ -16,6 +16,7 @@ export default class NoRedux extends React.Component {
 		super(props);
 		utils.burry('NoRedux');
 		this.state = {
+			data: [ 1, 2, 3 ],
 			num: 0
 		};
 		this.change = this.change.bind(this);
@@ -28,10 +29,11 @@ export default class NoRedux extends React.Component {
 	}
 
 	render() {
+		const { data } = this.state;
 		return (
 			<div>
-				<div>子组件里面的state：{this.state.num}</div>
-				<Test change={this.change} />
+				<p>父组件接受到子组件状态：{this.state.num}</p>
+				<Test data={data} change={this.change} />
 			</div>
 		);
 	}

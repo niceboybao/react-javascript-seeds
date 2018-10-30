@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-29 16:39:20 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 17:03:39
+ * @Last Modified time: 2018-10-30 20:52:22
  * @Describe: 无
  */
 
@@ -15,13 +15,19 @@
 		display: flex;
 		flex-direction: column;
 		line-height: 25px;
-        justify-content: center;
-        .describe{
-            display: flex;
-        }
-        .weight{
-            font-weight: 800;
-            width: 80px;
-        }
+		justify-content: center;
+		.describe {
+			display: flex;
+		}
+		.weight {
+			font-weight: 800;
+			width: 80px;
+		}
+	}
+	/* antd */
+	.logo {
+		height: 32px;
+		background: rgba(255, 255, 255, .2);
+		margin: 16px;
 	}
 }

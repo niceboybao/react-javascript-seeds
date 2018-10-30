@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-29 11:26:19 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 17:27:28
+ * @Last Modified time: 2018-10-30 20:54:51
  * @Describe: Demo 整体框架
  */
 import React from 'react';
@@ -94,14 +94,21 @@ export default class Demo extends React.Component {
 				date: '2018-09-18 22:32:27'
 			},
 			{
-				type: 'copy',
+				type: 'usergroup-add',
 				text: 'Team 4',
 				link: '/demo/team4',
+				title: '有个想不起来的经典案例可以放着呢',
+				date: '2018-09-28 17:33:50'
+			},
+			{
+				type: 'copy',
+				text: 'Copy Text',
+				link: '/demo/copyText',
 				title: '实现一个react 文字拷贝效果',
 				date: '2018-09-30 17:12:56'
 			},
 			{
-				type: 'usergroup-add',
+				type: 'flag',
 				text: 'No Redux',
 				link: '/demo/noRedux',
 				title: '实现一个没有redux的父子组件交互',
@@ -116,7 +123,7 @@ export default class Demo extends React.Component {
 			}
 		];
 		const pathname = this.getPathname(menuData, location.pathname);
-		console.log('this.demoIndex: ' + this.demoIndex);
+		// console.log('this.demoIndex: ' + this.demoIndex);
 
 		return (
 			<div id={style.demo}>
@@ -127,7 +134,7 @@ export default class Demo extends React.Component {
 						onCollapse={this.onCollapse}
 						style={{ overflowY: 'auto' }}
 					>
-						<div className="logo" />
+						<div className={style.logo} />
 						<Menu theme="dark" defaultSelectedKeys={[ this.demoIndex + '' ]} mode="inline">
 							{menuData.map((item, index) => (
 								<Menu.Item key={index + ''}>

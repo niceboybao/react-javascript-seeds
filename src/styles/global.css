@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 22:31:31 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 17:25:38
+ * @Last Modified time: 2018-10-30 20:52:03
  * @Describe: css 全局样式
  */
 html {
@@ -24,11 +24,4 @@ body {
 
 a {
 	color: #333;
-}
-
-/* antd */
-#components-layout-demo-side .logo {
-	height: 32px;
-	background: rgba(255, 255, 255, .2);
-	margin: 16px;
 }

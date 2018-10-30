@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 17:53:58
+ * @Last Modified time: 2018-10-30 20:37:08
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -20,6 +20,7 @@ import Team1 from '../containers/Demos/Team1';
 import Team2 from '../containers/Demos/Team2';
 import Team3 from '../containers/Demos/Team3';
 import Team4 from '../containers/Demos/Team4';
+import CopyText from '../containers/Demos/CopyText';
 import NoRedux from '../containers/Demos/NoRedux';
 import LinkToImg from '../containers/Demos/LinkToImg';
 
@@ -87,6 +88,11 @@ export function createRoutes() {
 		{
 			path: '/demo/team4',
 			component: Team4,
+			level: 2 //  路由组件层级
+		},
+		{
+			path: '/demo/copyText',
+			component: CopyText,
 			level: 2 //  路由组件层级
 		},
 		{
