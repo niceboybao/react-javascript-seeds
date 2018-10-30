@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 15:05:37
+ * @Last Modified time: 2018-10-29 17:53:58
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -21,6 +21,7 @@ import Team2 from '../containers/Demos/Team2';
 import Team3 from '../containers/Demos/Team3';
 import Team4 from '../containers/Demos/Team4';
 import NoRedux from '../containers/Demos/NoRedux';
+import LinkToImg from '../containers/Demos/LinkToImg';
 
 // 全屏组件路由(一级路由)
 export function createRoutes() {
@@ -93,6 +94,12 @@ export function createRoutes() {
 			component: NoRedux,
 			level: 2 //  路由组件层级
 		},
+		{
+			path: '/demo/linkToImg',
+			component: LinkToImg,
+			level: 2 //  路由组件层级
+		},
+
 		// Exception
 		{
 			path: '/exception/:id',

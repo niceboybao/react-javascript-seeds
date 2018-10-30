@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-29 11:26:19 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 17:06:52
+ * @Last Modified time: 2018-10-30 17:27:28
  * @Describe: Demo 整体框架
  */
 import React from 'react';
@@ -83,7 +83,7 @@ export default class Demo extends React.Component {
 				type: 'usergroup-add',
 				text: 'Team 2',
 				link: '/demo/team2',
-				title: '实现一个Team 2',
+				title: '新增reselect中间件  redux用 @ 的写法 实现一个sagas异步取消实例',
 				date: '2018-09-18 22:32:27 '
 			},
 			{
@@ -94,7 +94,7 @@ export default class Demo extends React.Component {
 				date: '2018-09-18 22:32:27'
 			},
 			{
-				type: 'usergroup-add',
+				type: 'copy',
 				text: 'Team 4',
 				link: '/demo/team4',
 				title: '实现一个react 文字拷贝效果',
@@ -106,6 +106,13 @@ export default class Demo extends React.Component {
 				link: '/demo/noRedux',
 				title: '实现一个没有redux的父子组件交互',
 				date: '2018-10-25 10:13:24'
+			},
+			{
+				type: 'paper-clip',
+				text: 'LinkToImg',
+				link: '/demo/linkToImg',
+				title: '实现一个连接转化成二维码并能成功保存',
+				date: '2018-10-30 17:48:12'
 			}
 		];
 		const pathname = this.getPathname(menuData, location.pathname);
@@ -113,8 +120,13 @@ export default class Demo extends React.Component {
 
 		return (
 			<div id={style.demo}>
-				<Layout style={{ minHeight: '100vh' }}>
-					<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
+				<Layout style={{ minHeight: '100vh', height: '100%' }}>
+					<Sider
+						collapsible
+						collapsed={this.state.collapsed}
+						onCollapse={this.onCollapse}
+						style={{ overflowY: 'auto' }}
+					>
 						<div className="logo" />
 						<Menu theme="dark" defaultSelectedKeys={[ this.demoIndex + '' ]} mode="inline">
 							{menuData.map((item, index) => (
