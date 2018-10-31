@@ -2,30 +2,29 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 15:51:49 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 10:25:07
+ * @Last Modified time: 2018-10-31 16:14:55
  * @Describe: 无
  */
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
 // 用于Node和Browserify的同构WHATWG Fetch API
 // import fetch from 'isomorphic-fetch';
 import utils from '../../utils';
-import { configClient } from '../../config.js';
+import config from '../../config.js';
 
 import { GETWEATHER } from './constants';
 import { getWeatherSuccess, getWeatherError } from './actions';
 
 // 获取天气API接口
 function* fetchData1(action) {
-	const url = 'https://free-api.heweather.com/v5/weather';
 	const params = {
-		key: configClient.weather_key,
+		key: config.WEATHER_KEY,
 		city: action.payload
 		// city: '成都'
 	};
 	try {
 		const api = () =>
 			utils.fetch({
-				url: url,
+				url: config.WEATHER_BASE_PATH,
 				params: params,
 				method: 'GET'
 			});

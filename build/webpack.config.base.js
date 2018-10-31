@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 16:02:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-24 14:17:35
+ * @Last Modified time: 2018-10-31 15:58:02
  * @Describe: webpack打包公共配置项
  */
 'use strict';
@@ -20,7 +20,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 const marked = require('marked');
 const renderer = new marked.Renderer();
 
-//import config resource
+// import webpack config resource
 const CommonConfig = require('../config/');
 //ASSET_PATH
 const ASSET_PATH = CommonConfig.getWebpackpublicPath();
@@ -61,7 +61,7 @@ const baseWebpackConfig = {
 	*/
 	output: {
 		// 这里是项目输出的路径,__dirname表示当前文件的位置,输出文件都放到 dist 目录下
-		path: path.resolve(__dirname, '../www'),
+		path: path.resolve(__dirname, '../' + CommonConfig.PACKAGE_PATH),
 		// 把所有依赖的模块合并输出到一个 [hash].[name].js 文件,这里是生成文件的名称，可起你想要的名字
 		filename: isProd ? 'scripts/[name].[hash].bundle.js' : 'scripts/[name].bundle.js',
 		/*

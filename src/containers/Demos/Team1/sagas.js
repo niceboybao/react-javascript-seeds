@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:25:16 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 10:15:39
+ * @Last Modified time: 2018-10-31 15:39:13
  */
 
 // redux-saga https://juejin.im/post/5ad83a70f265da503825b2b4
@@ -24,12 +24,13 @@ import {
 // 用于Node和Browserify的同构WHATWG Fetch API
 import fetch from 'isomorphic-fetch';
 
+import config from '../../../config.js';
 import { REQUESTDATA } from './constants';
 import { requestDataSuccess, requestDataError } from './actions';
 
 function* fetchData(action) {
 	try {
-		const response = yield call(fetch, '../../../mock/test.json');
+		const response = yield call(fetch, config.FETCH_BASE_PATH + 'mock/test.json');
 		if (response.ok) {
 			const json = yield response.json();
 			console.log(' team1 requestDataSuccess');

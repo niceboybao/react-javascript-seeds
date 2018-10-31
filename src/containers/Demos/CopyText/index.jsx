@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-30 17:12:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 20:42:17
+ * @Last Modified time: 2018-10-31 15:07:08
  * @Describe: 实现一个react 文字拷贝效果
  * https://github.com/nkbt/react-copy-to-clipboard
  */

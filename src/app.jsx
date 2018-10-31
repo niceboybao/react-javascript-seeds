@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-20 16:50:06
+ * @Last Modified time: 2018-10-31 17:16:07
  * @Describe: 工程入口文件
  */
 
@@ -38,13 +38,43 @@ import './styles/index.css';
 const sagaMiddleware = createSagaMiddleware();
 
 // set log level
+// 将给定级别的事物（trace / debug / info / warn / error）记录到控制台对象（如所有现代浏览器和node.js中所示）
+// log.trace(msg)  0
+// log.debug(msg)  1
+// log.info(msg)   2
+// log.warn(msg)   3
+// log.error(msg)  4
 if (process.env.NODE_ENV === 'production') {
-	console.log('process.env.NODE_ENV = production');
 	log.setLevel('info');
+	log.debug('process.env.NODE_ENV = production');
 } else {
-	console.log('process.env.NODE_ENV = development');
 	log.setLevel('debug');
+	log.debug('process.env.NODE_ENV = development');
 }
+
+// override console.log
+console.log = (message, ...objs) => {
+	let a = log.getLevel();
+	let b = log.levels.DEBUG;
+
+	if (log.getLevel() <= log.levels.DEBUG) {
+		console.groupCollapsed(message, ...objs);
+		console.trace('stack trace');
+		console.groupEnd();
+	} else {
+		log.debug(message, ...objs);
+	}
+};
+
+// // js中关闭console.log日志的方法
+// window.isDebugger = false; //false为生产模式，true为调试模式
+// console.log = (function(oriLogFunc) {
+// 	return function(str) {
+// 		if (window.isDebugger) {
+// 			oriLogFunc.call(console, str);
+// 		}
+// 	};
+// })(console.log);
 
 // Create router basename
 // basename:路由所有位置的基本URL

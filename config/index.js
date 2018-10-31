@@ -2,21 +2,24 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-30 20:09:25 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 11:10:03
- * @Describe: 工程配置文件
+ * @Last Modified time: 2018-10-31 17:16:26
+ * @Describe: webpack 配置文件
  */
 'use strict';
 
 // 获取开发环境变量
-console.log('工程启动环境: ' + process.env.NODE_ENV);
+// console.log('工程启动环境: ' + process.env.NODE_ENV);
 const NODE_ENV = process.env.NODE_ENV;
+// 工程打包到的文件夹名称
+// 部署到服务器上的时候，可以根据需求改变打包文件夹名称，一改全改
+const PACKAGE_PATH = 'www';
 
 // 根据开发环境设置前缀
 const getWebpackpublicPath = () => {
 	const urlObj = {
-		development: '/www/',
+		development: '/' + PACKAGE_PATH + '/',
 		// development: 'https://cdn.example.com/assets/',
-		production: '/www/'
+		production: '/' + PACKAGE_PATH + '/'
 	};
 
 	switch (NODE_ENV) {
@@ -31,5 +34,6 @@ const getWebpackpublicPath = () => {
 
 module.exports = {
 	NODE_ENV: NODE_ENV,
+	PACKAGE_PATH: PACKAGE_PATH,
 	getWebpackpublicPath
 };

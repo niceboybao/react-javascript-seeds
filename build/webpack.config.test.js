@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-10 23:05:27
+ * @Last Modified time: 2018-10-31 15:58:20
  * @Describe: 测试环境打包配置项
  */
 'use strict';
@@ -17,7 +17,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 //prod 开发环境变量
 const PROD_ENV = require('../config/prod.env.js');
-//import config resource
+// import webpack config resource
 const CommonConfig = require('../config/');
 const ASSET_PATH = CommonConfig.getWebpackpublicPath();
 
