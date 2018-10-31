@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 20:37:08
+ * @Last Modified time: 2018-10-31 18:16:48
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -23,6 +23,8 @@ import Team4 from '../containers/Demos/Team4';
 import CopyText from '../containers/Demos/CopyText';
 import NoRedux from '../containers/Demos/NoRedux';
 import LinkToImg from '../containers/Demos/LinkToImg';
+import Iframe from '../containers/Demos/Iframe';
+import MyLayout from '../containers/Demos/MyLayout';
 
 // 全屏组件路由(一级路由)
 export function createRoutes() {
@@ -103,6 +105,16 @@ export function createRoutes() {
 		{
 			path: '/demo/linkToImg',
 			component: LinkToImg,
+			level: 2 //  路由组件层级
+		},
+		{
+			path: '/demo/iframe',
+			component: Iframe,
+			level: 2 //  路由组件层级
+		},
+		{
+			path: '/demo/myLayout',
+			component: MyLayout,
 			level: 2 //  路由组件层级
 		},
 

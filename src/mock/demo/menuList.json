@@ -47,5 +47,19 @@
 		"link": "/demo/linkToImg",
 		"title": "实现一个连接转化成二维码并能成功保存",
 		"date": "2018-10-30 17:48:12"
+	},
+	{
+		"type": "api",
+		"text": "iframe",
+		"link": "/demo/iframe",
+		"title": "iframe和postmessage配合实现2个嵌套页面通信",
+		"date": "2018-10-31 17:40:12"
+	},
+	{
+		"type": "block",
+		"text": "My Layout",
+		"link": "/demo/myLayout",
+		"title": "flex布局、水平垂直居中、loading",
+		"date": "2018-10-31 18:13:56"
 	}
 ]
