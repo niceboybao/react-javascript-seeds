@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 15:25:16 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-21 16:21:05
+ * @Last Modified time: 2018-10-31 10:15:39
  */
 
 // redux-saga https://juejin.im/post/5ad83a70f265da503825b2b4
@@ -25,7 +25,7 @@ import {
 import fetch from 'isomorphic-fetch';
 
 import { REQUESTDATA } from './constants';
-import { requestDataSuccess, requestDataError, requestDataFaild } from './actions';
+import { requestDataSuccess, requestDataError } from './actions';
 
 function* fetchData(action) {
 	try {
@@ -41,7 +41,7 @@ function* fetchData(action) {
 		}
 	} catch (e) {
 		console.log('team1 requestDataFaild');
-		yield put(requestDataFaild(e.message));
+		yield put(requestDataError(e.message));
 	}
 }
 

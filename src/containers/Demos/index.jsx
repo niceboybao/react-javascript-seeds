@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-29 11:26:19 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 20:54:51
+ * @Last Modified time: 2018-10-31 11:33:37
  * @Describe: Demo 整体框架
  */
 import React from 'react';
@@ -14,11 +14,29 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-// import utils from '../../../utils';
+import utils from '../../utils';
 import Team1 from './Team1';
 import style from './index.scss';
 
-export default class Demo extends React.Component {
+//dispatch action
+import { getMenuList } from './actions';
+
+const mapStateToProps = (state) => {
+	return {
+		menuData: state.demoReducer.menuData
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		//获取数据
+		menuListData: () => {
+			dispatch(getMenuList());
+		}
+	};
+};
+
+class Demo extends React.Component {
 	constructor(props) {
 		super(props);
 		// utils.burry('Demo');
@@ -31,6 +49,11 @@ export default class Demo extends React.Component {
 		};
 		this.onCollapse = this.onCollapse.bind(this);
 		this.getPathname = this.getPathname.bind(this);
+	}
+
+	componentDidMount() {
+		//获取接口数据
+		this.props.menuListData();
 	}
 
 	generateRoutes = () => {
@@ -69,61 +92,10 @@ export default class Demo extends React.Component {
 		return path.substr(1).split('/');
 	}
 	render() {
-		const { location } = this.props;
+		const { location, menuData } = this.props;
 		const routes = this.generateRoutes();
-		const menuData = [
-			{
-				type: 'usergroup-add',
-				text: 'Team 1',
-				link: '/demo/team1',
-				title: '实现一个经典的react-redux-saga流程组件',
-				date: '2018-09-11 15:20:08'
-			},
-			{
-				type: 'usergroup-add',
-				text: 'Team 2',
-				link: '/demo/team2',
-				title: '新增reselect中间件  redux用 @ 的写法 实现一个sagas异步取消实例',
-				date: '2018-09-18 22:32:27 '
-			},
-			{
-				type: 'usergroup-add',
-				text: 'Team 3',
-				link: '/demo/team3',
-				title: '有个想不起来的经典案例可以放着呢',
-				date: '2018-09-18 22:32:27'
-			},
-			{
-				type: 'usergroup-add',
-				text: 'Team 4',
-				link: '/demo/team4',
-				title: '有个想不起来的经典案例可以放着呢',
-				date: '2018-09-28 17:33:50'
-			},
-			{
-				type: 'copy',
-				text: 'Copy Text',
-				link: '/demo/copyText',
-				title: '实现一个react 文字拷贝效果',
-				date: '2018-09-30 17:12:56'
-			},
-			{
-				type: 'flag',
-				text: 'No Redux',
-				link: '/demo/noRedux',
-				title: '实现一个没有redux的父子组件交互',
-				date: '2018-10-25 10:13:24'
-			},
-			{
-				type: 'paper-clip',
-				text: 'LinkToImg',
-				link: '/demo/linkToImg',
-				title: '实现一个连接转化成二维码并能成功保存',
-				date: '2018-10-30 17:48:12'
-			}
-		];
+
 		const pathname = this.getPathname(menuData, location.pathname);
-		// console.log('this.demoIndex: ' + this.demoIndex);
 
 		return (
 			<div id={style.demo}>
@@ -135,42 +107,54 @@ export default class Demo extends React.Component {
 						style={{ overflowY: 'auto' }}
 					>
 						<div className={style.logo} />
-						<Menu theme="dark" defaultSelectedKeys={[ this.demoIndex + '' ]} mode="inline">
-							{menuData.map((item, index) => (
-								<Menu.Item key={index + ''}>
-									<Link to={item.link}>
-										<Icon type={item.type} />
-										<span>{item.text}</span>
-									</Link>
-								</Menu.Item>
-							))}
-						</Menu>
-					</Sider>
-					<Layout>
-						<Header className={style['ant-layout-header']}>
-							<span className={style.describe}>
-								<span className={style.weight}>描述： </span>
-								{menuData[this.demoIndex].title}
-							</span>
-							<span className={style.describe}>
-								<span className={style.weight}>完成时间： </span>
-								{menuData[this.demoIndex].date}
-							</span>
-						</Header>
-						<Content style={{ margin: '0 16px' }}>
-							<Breadcrumb style={{ margin: '16px 16px' }}>
-								{pathname.map((item, index) => (
-									<Breadcrumb.Item key={index + ''}>{item}</Breadcrumb.Item>
+						{utils.isNotEmpty(menuData) && (
+							<Menu theme="dark" defaultSelectedKeys={[ this.demoIndex + '' ]} mode="inline">
+								{menuData.map((item, index) => (
+									<Menu.Item key={index + ''}>
+										<Link to={item.link}>
+											<Icon type={item.type} />
+											<span>{item.text}</span>
+										</Link>
+									</Menu.Item>
 								))}
-							</Breadcrumb>
-							<div style={{ padding: 24, background: '#fff', minHeight: 500 }}>
-								<Switch>{routes}</Switch>
-							</div>
-						</Content>
-						<Footer style={{ textAlign: 'center' }}>demo bloge ©2018 Created by guangwei.bao</Footer>
-					</Layout>
+							</Menu>
+						)}
+					</Sider>
+					{!utils.isNotEmpty(menuData) && (
+						<div className={style['loading-div']}>
+							<Icon type="loading" theme="outlined" className={style.icon} />
+						</div>
+					)}
+
+					{utils.isNotEmpty(menuData) && (
+						<Layout>
+							<Header className={style['ant-layout-header']}>
+								<span className={style.describe}>
+									<span className={style.weight}>描述： </span>
+									{menuData[this.demoIndex].title}
+								</span>
+								<span className={style.describe}>
+									<span className={style.weight}>完成时间： </span>
+									{menuData[this.demoIndex].date}
+								</span>
+							</Header>
+							<Content style={{ margin: '0 16px' }}>
+								<Breadcrumb style={{ margin: '16px 16px' }}>
+									{pathname.map((item, index) => (
+										<Breadcrumb.Item key={index + ''}>{item}</Breadcrumb.Item>
+									))}
+								</Breadcrumb>
+								<div style={{ padding: 24, background: '#fff', minHeight: 500 }}>
+									<Switch>{routes}</Switch>
+								</div>
+							</Content>
+							<Footer style={{ textAlign: 'center' }}>demo bloge ©2018 Created by guangwei.bao</Footer>
+						</Layout>
+					)}
 				</Layout>
 			</div>
 		);
 	}
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Demo);

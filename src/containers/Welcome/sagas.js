@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 15:51:49 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-27 00:45:49
+ * @Last Modified time: 2018-10-31 10:25:07
  * @Describe: 无
  */
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
@@ -35,7 +35,7 @@ function* fetchData1(action) {
 		// put是saga对Redux中dispatch方法的一个封装
 		yield put(getWeatherSuccess(json));
 	} catch (e) {
-		console.log('welcome getWeatherError');
+		console.log('welcome getWeatherFaild');
 		yield put(getWeatherError(e.message));
 	}
 }
