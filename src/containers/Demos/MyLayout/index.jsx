@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-31 18:12:58 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-01 20:57:02
+ * @Last Modified time: 2018-11-01 20:57:53
  * @Describe: flex布局、水平垂直居中、loading
  */
 
@@ -33,7 +33,7 @@ export default class MyLayout extends React.Component {
 					/>
 				</div>
 
-				<Divider style={{margin:'30px 0'}}>flex布局</Divider>
+				<Divider style={{ margin: '30px 0' }}>flex布局</Divider>
 				<div className={style['my-flex']}>flex布局</div>
 				<Divider style={{ margin: '30px 0' }}>固定宽高盒子 水平垂直居中</Divider>
 				<div className={style['my-center']}>
