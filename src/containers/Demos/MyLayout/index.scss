@@ -1,0 +1,54 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-11-01 11:28:47 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-11-01 15:50:00
+ * @Describe: 无
+ */
+
+#my-layout {
+	width: 100%;
+	height: 100%;
+
+	$item-background-color: #ecdfdf;
+	%com-item-bakcground {
+		border-radius: 5px;
+		background-color: $item-background-color;
+	}
+	.inner-html {
+		height: 100px;
+		@extend %com-item-bakcground;
+	}
+
+	.my-flex {
+		@extend %com-item-bakcground;
+	}
+
+	.my-center {
+		// @extend %com-item-bakcground;
+		%center-border-size-out {
+			width: 200px;
+			height: 200px;
+			background-color: $item-background-color;
+		}
+		%center-border-size-in {
+			width: 40px;
+			height: 40px;
+			background-color: #33b0fc;
+		}
+		.center-item {
+			width: 200px;
+			// float: left;
+		}
+		.center-1-father {
+			@extend %center-border-size-out;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			.center-1-son {
+				@extend %center-border-size-in;
+			}
+		}
+	}
+}

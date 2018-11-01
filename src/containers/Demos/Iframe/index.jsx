@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-31 17:40:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 18:07:16
+ * @Last Modified time: 2018-11-01 09:19:42
  * @Describe: iframe和postmessage配合实现2个嵌套页面通信
  */
 
@@ -23,7 +23,7 @@ export default class Iframe extends React.Component {
 		window.addEventListener('message', this.clickHandler.bind(this), false);
 		// setTimeout(() => {
 		//     console.log('setTimeout');
-		// 	window.postMessage({ a: 1 },'http://localhost:8890/module/index.html');
+		// 	window.postMessage({ a: 1 },'http://localhost:8384/www/index.html');
 		// }, 1000);
 	}
 	componentWillUnmount() {
@@ -39,8 +39,7 @@ export default class Iframe extends React.Component {
 		let text = '';
 		//拿取到数据
 		if (data.normalAddressFullName || data.splitName) {
-			const { splitName, normalAddressId, normalAddressFullName } = data;
-			debugger;
+			const { splitName, normalAddressFullName } = data;
 			if (normalAddressFullName.length > 0) {
 				text = normalAddressFullName;
 			} else if (splitName.length > 0) {
@@ -50,7 +49,6 @@ export default class Iframe extends React.Component {
 			this.setState({
 				text
 			});
-
 			// history.go(-1);
 		}
 	}
