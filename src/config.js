@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 11:10:29 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 17:21:14
+ * @Last Modified time: 2018-11-06 17:32:30
  * @Describe: 项目开发配置文件
  */
 'use strict';
@@ -33,7 +33,7 @@ if (projectEnv === 'development') {
 // 服务器环境
 if (projectEnv === 'production') {
 	BUILD_NUMBER = '0.0.1'; // 版本号
-	FETCH_BASE_PATH = `http://www.commok.com/${CommonConfig.PACKAGE_PATH}/`; //基础接口前缀
+	FETCH_BASE_PATH = `http://47.99.212.100/${CommonConfig.PACKAGE_PATH}/`; //基础接口前缀
 	FETCH_NOTICE_PATH = ''; //额外接口前缀
 	BAIDU_LOCATION_KEY = '3OhLnfWO3PVKyAUNyZjLXkMjf7daTku1'; //百度地理定位api key(niceboybao.cn)
 	WEATHER_BASE_PATH = 'https://free-api.heweather.com/v5/weather';
