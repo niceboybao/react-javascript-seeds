@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-25 16:48:13 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-26 16:03:54
+ * @Last Modified time: 2018-11-08 20:26:20
  * @Describe: 接口场景处理(对工程接口的统一封装并暴露)
  */
 'use strict';
@@ -45,7 +45,6 @@ export function request(obj) {
 	} else if (obj.method.toUpperCase() === 'POST') {
 		_url = obj.url;
 	}
-
 	return (
 		fetch(_url, {
 			method: obj.method.toUpperCase(),
@@ -53,7 +52,8 @@ export function request(obj) {
 			headers: {
 				Accept: 'application/json, text/plain, */*',
 				'Content-Type': 'application/json',
-				'Cache-Control': 'no-cache'
+				'Cache-Control': 'no-cache',
+				'Access-Control-Allow-Origin': 'http://localhost:8384/'
 			},
 			body: obj.method.toUpperCase() === 'POST' ? JSON.stringify(obj.params) : null
 		})
