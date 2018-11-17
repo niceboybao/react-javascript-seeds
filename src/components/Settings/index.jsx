@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 17:08:40 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-20 16:43:29
+ * @Last Modified time: 2018-11-17 17:56:41
  * @Describe: 设置页面
  */
 
@@ -14,7 +14,7 @@ import { Icon, Popover } from 'antd';
 import utils from '../../utils';
 import style from './index.scss';
 
-export default class Home extends React.Component {
+export default class Settings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

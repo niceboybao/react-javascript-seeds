@@ -78,4 +78,8 @@
 	opacity: 0.5;
 	transform: skew(30deg) translate(230px);
 	transition: transform 5s;
+	/* transition: width 2s; */
+	/* -moz-transition: width 2s; Firefox 4 */
+	/* -webkit-transition: width 2s; Safari 和 Chrome */
+	/* -o-transition: width 2s; Opera */
 }
