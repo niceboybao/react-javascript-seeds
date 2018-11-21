@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-13 17:29:54 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 16:53:11
+ * @Last Modified time: 2018-11-21 16:56:34
  * @Describe: 全局提示
  */
 import { message } from 'antd';
@@ -23,7 +23,7 @@ export const tips = {
 		message.warning(text, duration);
 	},
 	loading: function(text) {
-		message.loading(text, duration * 15).then(() => {
+		message.loading(text, duration * 50).then(() => {
 			message.info('加载成功', duration);
 		});
 	}

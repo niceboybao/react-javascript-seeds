@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-30 17:12:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 15:07:08
+ * @Last Modified time: 2018-11-21 17:04:49
  * @Describe: 实现一个react 文字拷贝效果
  * https://github.com/nkbt/react-copy-to-clipboard
  */
@@ -28,7 +28,7 @@ export default class CopyText extends React.Component {
 		console.log('onCopy');
 	}
 	copyButton() {
-		utils.message.success('复制成功！');
+		utils.Toast.success('复制成功！');
 	}
 
 	render() {

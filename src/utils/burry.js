@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-13 17:15:22 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 17:33:01
+ * @Last Modified time: 2018-11-21 16:58:48
  * @Describe: 工程所有页面的数据埋点方法
  */
 'use strict';

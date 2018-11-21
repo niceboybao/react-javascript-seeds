@@ -2,14 +2,17 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-31 17:40:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-01 09:19:42
+ * @Last Modified time: 2018-11-21 17:28:40
  * @Describe: iframe和postmessage配合实现2个嵌套页面通信
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
+
+import config from '../../../config.js';
 import utils from '../../../utils';
 
+const URL_GIS_BASE = document.location.protocol == 'http:' ? config.GIS_LINK : config.GIS_LINK_HTTPS;
 export default class Iframe extends React.Component {
 	constructor(props) {
 		super(props);
@@ -57,8 +60,7 @@ export default class Iframe extends React.Component {
      */
 	render() {
 		const { text } = this.state;
-		const url =
-			'http://221.181.128.248:28080/ngwlangish5/h5/module/gis_index.html#/Home?systemSource=NGWLANMKYY&orderNumber=1810311735300162389';
+		const url = URL_GIS_BASE + 'Home?systemSource=NGWLANMKYY&orderNumber=1810311735300162389';
 
 		return (
 			<div id="myIframe" style={{ width: '100%', height: '600px' }}>
