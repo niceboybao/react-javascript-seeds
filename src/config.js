@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 11:10:29 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-21 17:28:32
+ * @Last Modified time: 2018-11-21 17:48:15
  * @Describe: 项目开发配置文件
  */
 'use strict';
@@ -22,7 +22,7 @@ let WEATHER_KEY = ''; //天气api key
 //gis地址链接 http
 let GIS_LINK = 'http://221.181.128.248:28080/ngwlangish5/h5/module/gis_index.html#/';
 //gis地址链接 https
-let GIS_LINK_HTTPS = 'http://221.181.128.248/ngwlangish5/h5/module/gis_index.html#/';
+let GIS_LINK_HTTPS = 'https://221.181.128.248/ngwlangish5/h5/module/gis_index.html#/';
 
 // 开发环境
 if (projectEnv === 'development') {
