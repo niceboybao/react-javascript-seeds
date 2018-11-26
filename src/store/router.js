@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 18:16:48
+ * @Last Modified time: 2018-11-26 11:27:31
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -25,6 +25,7 @@ import NoRedux from '../containers/Demos/NoRedux';
 import LinkToImg from '../containers/Demos/LinkToImg';
 import Iframe from '../containers/Demos/Iframe';
 import MyLayout from '../containers/Demos/MyLayout';
+import Flex from '../containers/Demos/Flex';
 
 // 全屏组件路由(一级路由)
 export function createRoutes() {
@@ -115,6 +116,11 @@ export function createRoutes() {
 		{
 			path: '/demo/myLayout',
 			component: MyLayout,
+			level: 2 //  路由组件层级
+		},
+		{
+			path: '/demo/flex',
+			component: Flex,
 			level: 2 //  路由组件层级
 		},
 

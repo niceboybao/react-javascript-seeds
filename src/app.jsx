@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 17:16:07
+ * @Last Modified time: 2018-11-26 17:40:14
  * @Describe: 工程入口文件
  */
 
@@ -25,6 +25,7 @@ import createReducer from './store/reducers';
 import rootSaga from './store/sagas';
 import RootContainer from './containers/RootContainer';
 // import { HEMPConfig } from './config';
+const CommonConfig = require('../config/');
 
 // import css
 // import '!style-loader!css-loader!antd/dist/antd.min.css';
@@ -78,12 +79,15 @@ console.log = (message, ...objs) => {
 
 // Create router basename
 // basename:路由所有位置的基本URL
-let appBase = '/www';
-const basepath = window.location.href.match(/\/\/([^\/]*)\/(.*)\/www/);
-if (basepath !== undefined && basepath !== null && basepath.length == 3) {
-	// 部署到自己的域名下时，动态拼接域名下的工程文件夹
-	appBase = '/' + basepath[2] + appBase;
+let appBase = '/' + CommonConfig.PACKAGE_PATH;
+if (process.env.NODE_ENV === 'production') {
+	appBase = '/' + CommonConfig.PACKAGE_PATH_PROD;
 }
+// const basepath = window.location.href.match(/\/\/([^\/]*)\/(.*)\/dist/);
+// if (basepath !== undefined && basepath !== null && basepath.length == 3) {
+// 	// 部署到自己的域名下时，动态拼接域名下的工程文件夹
+// 	appBase = '/' + basepath[2] + appBase;
+// }
 // Create a history
 const history = createBrowserHistory({ basename: appBase });
 // Create react-router-redux middleware

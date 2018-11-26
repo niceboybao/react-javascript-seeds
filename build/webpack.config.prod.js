@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 16:05:47
+ * @Last Modified time: 2018-11-26 17:34:37
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -64,23 +64,23 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 		// 要求服务器在针对任何命中的路由时都返回到 HTML 文件
 		historyApiFallback: {
 			// 使用正则匹配命中路由
-			rewrites: [
-				// /3w 开头的都返回 index.html
-				{ from: /^\/www/, to: '/index.html' },
-				// 其它的都返回 index.html
-				{ from: /./, to: '/error.html' }
-			]
+			// rewrites: [
+			// 	// /打包 开头的都返回 index.html
+			// 	{ from: /^\/dist/, to: '/index.html' },
+			// 	// 其它的都返回 index.html
+			// 	{ from: /./, to: '/error.html' }
+			// ]
 		},
 		// 关闭热加载 只需将下面2个属性改成false，和一个 HotModuleReplacementPlugin 热加载插件即可
 		hot: false, // 是否开启模块热替换功能
 		inline: false, // 在dev-server的两种不同模式之间切换。默认情况下，应用程序启用内联模式
 		port: 8384, //端口
 		// open: true, // 启用open后，开发服务器会打开浏览器。
-		openPage: CommonConfig.PACKAGE_PATH + '/',
+		openPage: CommonConfig.PACKAGE_PATH_PROD + '/',
 		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
 		// allowedHosts: [ 'niceboybao.cn' ],
 		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
-		contentBase: path.join(__dirname, '../' + CommonConfig.PACKAGE_PATH)
+		contentBase: path.join(__dirname, '../' + CommonConfig.PACKAGE_PATH_PROD)
 	},
 
 	/*

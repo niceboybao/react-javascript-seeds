@@ -1,0 +1,329 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-11-26 11:25:48 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-11-26 16:46:11
+ * @Describe: 无
+ */
+
+#my-flex {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	p {
+		width: 100%;
+		font-weight: 700;
+		margin-top: 10px;
+	}
+	.com_box {
+		border: 1px solid;
+		width: 200px;
+		height: 200px;
+		border-radius: 10px;
+		display: flex;
+		flex-wrap: wrap;
+		margin: 5px;
+	}
+	.com_item {
+		width: 55px;
+		height: 55px;
+		margin: 5px;
+		background-color: black;
+		border-radius: 50%;
+	}
+
+	// 一项目
+	.a1 {
+		.box {
+			display: flex;
+		}
+	}
+	.a2 {
+		.box {
+			display: flex;
+			justify-content: center;
+		}
+	}
+	.a3 {
+		.box {
+			display: flex;
+			justify-content: flex-end;
+		}
+	}
+	.a4 {
+		.box {
+			display: flex;
+			align-items: center;
+		}
+	}
+	.a5 {
+		.box {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	.a6 {
+		.box {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+	}
+	.a7 {
+		.box {
+			display: flex;
+			align-items: flex-end;
+		}
+	}
+	.a8 {
+		.box {
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+		}
+	}
+	.a9 {
+		.box {
+			display: flex;
+			align-items: flex-end;
+			justify-content: flex-end;
+		}
+	}
+
+	// 2项目
+	.b1 {
+		.box {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+
+	.b2 {
+		.box {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+	.b3 {
+		.box {
+			display: flex;
+			align-items: flex-end;
+			justify-content: space-between;
+		}
+	}
+
+	.b4 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+	}
+	.b5 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+	.b6 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: space-between;
+		}
+	}
+	.b7 {
+		.box {
+			display: flex;
+			.item:nth-of-type(2) {
+				align-self: center;
+			}
+		}
+	}
+	.b8 {
+		.box {
+			display: flex;
+			justify-content: space-between;
+			.item:nth-of-type(1) {
+				align-self: flex-end;
+			}
+		}
+	}
+	.b9 {
+		.box {
+			display: flex;
+			justify-content: space-between;
+			.item:nth-of-type(2) {
+				align-self: flex-end;
+			}
+		}
+	}
+
+	// 3项目
+	.c1 {
+		.box {
+			display: flex;
+			align-items: center;
+		}
+	}
+	.c2 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	.c3 {
+		.box {
+			display: flex;
+			.item:nth-of-type(2) {
+				align-self: center;
+			}
+			.item:nth-of-type(3) {
+				align-self: flex-end;
+			}
+		}
+	}
+
+	// 4项目
+	.d1 {
+		.box {
+			display: flex;
+			align-content: space-between;
+		}
+	}
+
+	.d2 {
+		.box {
+			display: flex;
+			justify-content: flex-end;
+			align-content: space-between;
+		}
+	}
+
+	.d3 {
+		.box {
+			display: flex;
+			align-content: center;
+		}
+	}
+	.d4 {
+		.box {
+			display: flex;
+			justify-content: center;
+			align-content: center;
+		}
+	}
+	.d5 {
+		.box {
+			display: flex;
+			justify-content: flex-end;
+			align-content: center;
+		}
+	}
+
+	.d6 {
+		.box {
+			display: flex;
+			flex-wrap: wrap;
+			align-content: space-between;
+			.column {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+	}
+	.d7 {
+		.box {
+			display: flex;
+			flex-wrap: wrap;
+			align-content: center;
+			.column {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+
+	// 5项目
+	.e1 {
+		.box {
+			display: flex;
+			.column:nth-of-type(2n + 1) {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+			.column:nth-of-type(2n) {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+
+	// 6项目
+	.f1 {
+		.box {
+			display: flex;
+			align-content: space-between;
+		}
+	}
+
+	.f2 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			align-content: space-between;
+		}
+	}
+	.f3 {
+		.box {
+			display: flex;
+			align-content: center;
+		}
+	}
+	.f4 {
+		.box {
+			display: flex;
+			flex-direction: column;
+			align-content: center;
+		}
+	}
+
+	.f5 {
+		.box {
+			display: flex;
+			.column:nth-of-type(1) {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: center;
+			}
+			.column:nth-of-type(2) {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: center;
+			}
+			.column:nth-of-type(3) {
+				flex-basis: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+		}
+	}
+
+	// 9项目
+	.i1 {
+		.box {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+}

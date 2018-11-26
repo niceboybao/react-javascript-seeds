@@ -61,5 +61,12 @@
 		"link": "/demo/myLayout",
 		"title": "flex布局、水平垂直居中、loading",
 		"date": "2018-10-31 18:13:56"
+	},
+	{
+		"type": "block",
+		"text": "Flex",
+		"link": "/demo/flex",
+		"title": "flex布局demo",
+		"date": "2018-11-26 11:30:56"
 	}
 ]

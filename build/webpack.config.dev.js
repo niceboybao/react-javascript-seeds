@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:15 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 16:05:03
+ * @Last Modified time: 2018-11-26 17:34:53
  * @Describe: 测试环境打包配置项
  */
 'use strict';
@@ -37,23 +37,23 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 		// 要求服务器在针对任何命中的路由时都返回到 HTML 文件
 		historyApiFallback: {
 			// 使用正则匹配命中路由
-			rewrites: [
-				// /3w 开头的都返回 index.html
-				{ from: /^\/www/, to: '/index.html' },
-				// 其它的都返回 index.html
-				{ from: /./, to: '/error.html' }
-			]
+			// rewrites: [
+			// 	// /3w 开头的都返回 index.html
+			// 	{ from: /^\/dist/, to: '/index.html' },
+			// 	// 其它的都返回 index.html
+			// 	{ from: /./, to: '/error.html' }
+			// ]
 		},
 		// 关闭热加载 只需将下面2个属性改成false，和一个 HotModuleReplacementPlugin 热加载插件即可
 		hot: true, // 是否开启模块热替换功能
 		inline: true, // 在dev-server的两种不同模式之间切换。默认情况下，应用程序启用内联模式
 		port: 8384, //端口
 		// open: true, // 启用open后，开发服务器会打开浏览器。
-		openPage: CommonConfig.PACKAGE_PATH+'/',
+		openPage: CommonConfig.PACKAGE_PATH + '/',
 		// 不监听的文件或文件夹，支持正则匹配。默认为空
 		// ignored: /node_modules/,
 		// 配置 DevServer HTTP 服务器的文件根目录。 默认情况下为当前执行目录，通常是项目根目录
-		contentBase: path.join(__dirname, '../'+CommonConfig.PACKAGE_PATH)
+		contentBase: path.join(__dirname, '../' + CommonConfig.PACKAGE_PATH)
 		// disableHostCheck:true  ??
 	},
 

@@ -13,9 +13,7 @@
 	],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"clean": "npm run clean-cache && npm run clean-www",
-		"clean-www": "rimraf www/*",
-		"clean-cache": "rimraf .cache-loader/*",
+		"clean": "rimraf .cache-loader/* && rm -rf www/* && rm -rf react-javascript-seeds/*",
 		"build": "webpack --progress --colors",
 		"build-dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.dev.js",
 		"build-prod": "cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.prod.js",
