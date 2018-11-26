@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-22 16:54:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-26 17:34:37
+ * @Last Modified time: 2018-11-26 18:02:28
  * @Describe: 生产环境打包配置项
  */
 'use strict';
@@ -76,11 +76,11 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
 		inline: false, // 在dev-server的两种不同模式之间切换。默认情况下，应用程序启用内联模式
 		port: 8384, //端口
 		// open: true, // 启用open后，开发服务器会打开浏览器。
-		openPage: CommonConfig.PACKAGE_PATH_PROD + '/',
+		openPage: CommonConfig.PACKAGE_PATH + '/',
 		// 此选项允许你添加白名单服务，允许一些开发服务器访问。
 		// allowedHosts: [ 'niceboybao.cn' ],
 		// 告诉服务器从哪个目录中提供内容。只用在你想要提供静态文件时才需要
-		contentBase: path.join(__dirname, '../' + CommonConfig.PACKAGE_PATH_PROD)
+		contentBase: path.join(__dirname, '../' + CommonConfig.PACKAGE_PATH)
 	},
 
 	/*
