@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-31 17:40:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-23 16:02:59
+ * @Last Modified time: 2018-11-27 14:50:16
  * @Describe: iframe和postmessage配合实现2个嵌套页面通信
  */
 
@@ -12,7 +12,8 @@ import { connect } from 'react-redux';
 import config from '../../../config.js';
 import utils from '../../../utils';
 
-const URL_GIS_BASE = document.location.protocol == 'http:' ? config.GIS_LINK : config.GIS_LINK_HTTPS;
+// const URL_GIS_BASE = document.location.protocol == 'http:' ? config.GIS_LINK : config.GIS_LINK_HTTPS;
+const URL_GIS_BASE = document.location.protocol == 'http:' ? config.GIS_LINK : config.GIS_LINK;
 export default class Iframe extends React.Component {
 	constructor(props) {
 		super(props);
