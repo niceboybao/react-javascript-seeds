@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:38:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-30 15:01:51
+ * @Last Modified time: 2018-12-11 17:01:29
  * @Describe: 天气组件
  */
 
@@ -51,8 +51,8 @@ export default class Weather extends React.Component {
 
 	render() {
 		const { location, weather } = this.props;
-		let _img = '';
-		if (utils.isNotEmpty(weather)) {
+		let _img = 'welcome/weather_sunshine.png';
+		if (utils.isNotEmpty(weather.now)) {
 			_img = this.weatherImg();
 		}
 		return (
@@ -60,7 +60,7 @@ export default class Weather extends React.Component {
 				{utils.isNotEmpty(weather) && (
 					<div className={style.temp}>
 						<img src={utils.requireImg(_img)} alt="天气" />
-						<span>{weather.now.tmp}°</span>
+						{utils.isNotEmpty(weather.now) && <span>{weather.now.tmp}°</span>}
 					</div>
 				)}
 				{utils.isNotEmpty(location) && <div className={style.local}>{location.name}</div>}
