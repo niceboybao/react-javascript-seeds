@@ -2,14 +2,15 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-25 16:48:13 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-08 20:26:20
+ * @Last Modified time: 2018-12-12 17:23:19
  * @Describe: 接口场景处理(对工程接口的统一封装并暴露)
  */
 'use strict';
+
 import 'isomorphic-fetch';
 import { objToString } from './params.js';
-
-// 接口异常状态处理
+let isText = false; //接口数据默认为json格式
+// 接口状态检测
 const checkStatus = function(response) {
 	// 正常状态
 	if (response.status >= 200 && response.status < 300) {
@@ -24,7 +25,11 @@ const checkStatus = function(response) {
 // 返回结果抽取
 const parseJSON = function(response) {
 	if (response.ok) {
-		return response.json();
+		if (isText) {
+			return response.text();
+		} else {
+			return response.json();
+		}
 		console.log('fetch success');
 	} else {
 		fetchError(response.ok);
@@ -36,34 +41,45 @@ const fetchError = function(log) {
 	console.error(log);
 };
 
-// 接口场景处理
-export function request(obj) {
+// get接口场景处理
+export function _getJson(obj) {
 	let _url = '';
-	if (obj.method.toUpperCase() === 'GET') {
+	if (obj.params) {
 		_url = objToString(obj.params);
 		_url = obj.url + '?' + _url;
-	} else if (obj.method.toUpperCase() === 'POST') {
+	} else {
 		_url = obj.url;
 	}
-	return (
-		fetch(_url, {
-			method: obj.method.toUpperCase(),
-			credentials: 'include',
-			headers: {
-				Accept: 'application/json, text/plain, */*',
-				'Content-Type': 'application/json',
-				'Cache-Control': 'no-cache',
-				'Access-Control-Allow-Origin': 'http://localhost:8384/'
-			},
-			body: obj.method.toUpperCase() === 'POST' ? JSON.stringify(obj.params) : null
-		})
-			.then(checkStatus)
-			.then(parseJSON)
-			// .catch((error) => {
-			// 	// consolr.log(error);
-			// })
-			.catch((error) => fetchError(error))
-	);
+	if (obj.text) {
+		isText = true;
+	}
+	return fetch(_url, {
+		method: obj.method.toUpperCase(),
+		credentials: 'include',
+		headers: {
+			Accept: 'application/json, text/plain, */*',
+			'Content-Type': 'application/json',
+			'Cache-Control': 'no-cache'
+		}
+	})
+		.then(checkStatus)
+		.then(parseJSON);
+}
+
+// post接口场景处理
+export function _postJson(obj) {
+	return fetch(obj.url, {
+		method: obj.method.toUpperCase(),
+		credentials: 'include',
+		headers: {
+			Accept: 'application/json, text/plain, */*',
+			'Content-Type': 'application/json',
+			'Cache-Control': 'no-cache'
+		},
+		body: JSON.stringify(obj.params)
+	})
+		.then(checkStatus)
+		.then(parseJSON);
 }
 
 // fetch(url,{ // url: 请求地址

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-11-17 17:57:05 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-17 17:59:53
+ * @Last Modified time: 2018-12-12 15:23:20
  * @Describe: 时间组件
  */
 
@@ -17,6 +17,25 @@ import style from './index.scss';
 export default class NowDate extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			dateNum: '',
+			dateType: ''
+		};
+		this.intervalTime = null;
+	}
+
+	componentWillMount() {
+		this.intervalTime = setInterval(() => {
+			this.getNowFormatDate();
+		}, 1000);
+	}
+	componentDidMount() {}
+
+	// 组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
+	componentWillUnmount() {
+		console.log('NowDate component componentWillUnmount');
+		// clear intervalTime
+		clearInterval(this.intervalTime);
 	}
 
 	// 当前时间字符串
@@ -27,61 +46,51 @@ export default class NowDate extends React.Component {
 		// 年
 		const year = date.getFullYear();
 		// 月
-		let month = date.getMonth() + 1;
-		if (month >= 1 && month <= 9) {
-			month = '0' + month;
-		}
+		let month = this.handleZero(date.getMonth());
 		// 天
-		let strDate = date.getDate();
-		if (strDate >= 0 && strDate <= 9) {
-			strDate = '0' + strDate;
-		}
+		let strDate = this.handleZero(date.getDate());
 		// 小时
-		let hours = date.getHours();
-		if (hours >= 0 && hours <= 9) {
-			hours = '0' + hours;
-		}
+		let hours = this.handleZero(date.getHours());
+
 		// 分钟
-		let minutes = date.getMinutes();
-		if (minutes >= 0 && minutes <= 9) {
-			minutes = '0' + minutes;
-		}
+		let minutes = this.handleZero(date.getMinutes());
 		// 秒
-		let seconds = date.getSeconds();
-		if (seconds >= 0 && seconds <= 9) {
-			seconds = '0' + seconds;
+		let seconds = this.handleZero(date.getSeconds());
+
+		this.setState({
+			dateNum: hours + ':' + minutes,
+			dateType: this.getHoursType(date.getHours())
+		});
+	}
+
+	// 统一处理时间一位数和二位数
+	handleZero(num) {
+		if (num >= 0 && num <= 9) {
+			return '0' + num;
+		} else {
+			return num;
 		}
-
-		// const currentdate =
-		// 	year +
-		// 	seperator1 +
-		// 	month +
-		// 	seperator1 +
-		// 	strDate +
-		// 	' ' +
-		// 	hours +
-		// 	seperator2 +
-		// 	minutes +
-		// 	seperator2 +
-		// 	seconds;
-		const currentdate =
-			'99' +
-			year +
-			// seperator1 +
-			month +
-			// seperator1 +
-			strDate +
-			// ' ' +
-			hours +
-			// seperator2 +
-			minutes +
-			// seperator2 +
-			seconds;
-
-		return currentdate;
+	}
+	getHoursType(hour) {
+		if (hour > 0 && hour < 12) {
+			return 'Good Morning, My friend';
+		} else if (hour > 12 && hour < 18) {
+			return 'Good Afternoon, My friend';
+		} else if (hour > 18 && hour < 24) {
+			return 'Good evening, My friend';
+		} else {
+			return 'error';
+		}
 	}
 
 	render() {
-		return <div>123</div>;
+		// const getNowFormatDate
+		const { dateNum, dateType } = this.state;
+		return (
+			<div className={style.date}>
+				<div>{dateNum}</div>
+				<span>{dateType}</span>
+			</div>
+		);
 	}
 }

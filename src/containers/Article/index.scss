@@ -1,0 +1,97 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-09-18 22:32:04 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-12-13 09:56:10
+ * @Describe: 无
+ */
+@import '../../sass/index';
+
+.article {
+	font-family: -apple-system, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	word-wrap: break-word;
+	word-wrap: break-word;
+	color: #314659;
+	margin: 0;
+	background-color: #f4f5f5;
+
+	overflow-y: auto;
+	height: 100%;
+}
+
+#markdown-body {
+	word-break: break-word;
+	line-height: 1.75;
+	font-weight: 400;
+	font-size: 15px;
+	margin-bottom: 1.5rem;
+	padding: 1rem 1rem;
+	background-color: #fff;
+	border-radius: 2px;
+	box-sizing: border-box;
+
+	max-width: 1000px;
+	margin: 0 auto;
+
+	ul li {
+		line-height: 24px;
+	}
+	blockquote {
+		color: #666;
+		padding: 1px 23px;
+		margin: 22px 0;
+		border-left: 4px solid #cbcbcb;
+		background-color: #f8f8f8;
+	}
+	code {
+		background-color: #fff5f5;
+		color: #ff502c;
+		padding: .065em .4em;
+	}
+	pre > code {
+		-webkit-overflow-scrolling: touch;
+		color: #998;
+		margin: 0;
+		word-break: normal;
+		display: block;
+		overflow-x: auto;
+		padding: 0.5em;
+		background: #000000;
+	}
+	img {
+		display: block;
+		max-width: 100%;
+		margin: 5px auto;
+	}
+
+	a {
+		color: #0366d6;
+		text-decoration: none;
+		&:active {
+			outline-width: 0;
+		}
+		&:hover {
+			outline-width: 0;
+			text-decoration: underline;
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 600;
+		line-height: 1.25;
+		margin-bottom: 16px;
+		margin-top: 24px;
+	}
+
+	h2 {
+		border-bottom: 1px solid #eaecef;
+		padding-bottom: .3em;
+	}
+}

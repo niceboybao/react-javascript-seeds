@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:03:28 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-26 11:27:31
+ * @Last Modified time: 2018-12-12 15:37:41
  * @Describe: 组件路由配置
  */
 'use strict';
@@ -10,6 +10,7 @@
 // import component
 import Exception from '../containers/Exception';
 import Welcome from '../containers/Welcome';
+import Article from '../containers/Article';
 import Tag from '../containers/Tag';
 import Home from '../containers/Home';
 import About from '../containers/About';
@@ -49,6 +50,13 @@ export function createRoutes() {
 			path: '/tag',
 			exact: true, //true 表示严格匹配 false 正常匹配
 			component: Tag,
+			level: 1 //  路由组件层级
+		},
+		// 我的文章
+		{
+			path: '/article',
+			exact: true, //true 表示严格匹配 false 正常匹配
+			component: Article,
 			level: 1 //  路由组件层级
 		},
 		// 个人中心

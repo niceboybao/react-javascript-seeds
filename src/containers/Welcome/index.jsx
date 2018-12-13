@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-11 17:29:55 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-08 20:26:15
+ * @Last Modified time: 2018-12-12 15:26:19
  * @Describe: 首屏
  */
 
@@ -17,6 +17,7 @@ import Settings from '../../components/Settings';
 import Weather from './Weather';
 import Links from './Links';
 import Foot from './Foot';
+import NowDate from '../../components/NowDate';
 
 import { getLocation, getWeather } from './actions';
 
@@ -134,10 +135,7 @@ class Welcome extends React.Component {
 					<div style={{ height: 30 }} />
 					<ToolBar />
 					<div className={style.body}>
-						<div className={style.date}>
-							<div>23:59</div>
-							<span>Good evening, My friends.</span>
-						</div>
+						<NowDate />
 					</div>
 
 					<Foot />

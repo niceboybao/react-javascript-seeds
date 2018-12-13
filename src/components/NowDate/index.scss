@@ -1,0 +1,19 @@
+/*
+ * @Author: guangwei.bao 
+ * @Date: 2018-12-12 15:23:01 
+ * @Last Modified by: guangwei.bao
+ * @Last Modified time: 2018-12-12 15:25:23
+ * @Describe: 无
+ */
+
+ @import '../../sass/index.scss';
+ .date {
+    @include flex-center(column,center,center);
+    font-weight: $welcome-font-weight;
+    div {
+        font-size: 165px;
+    }
+    span {
+        font-size: 55px;
+    }
+}

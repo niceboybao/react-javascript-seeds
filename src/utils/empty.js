@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-27 16:55:58 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-29 11:30:04
+ * @Last Modified time: 2018-12-13 09:57:46
  * @Describe: 过滤掉空字段 && 判断字段是否为空
  */
 'use strict';
@@ -48,29 +48,24 @@ export const _isNotEmpty = function(param) {
 		case 'Undefined':
 			// flag = false;
 			break;
-
 		case 'Null':
 			// flag = false;
 			break;
-
 		case 'Boolean':
 			if (param) {
 				flag = true;
 			}
 			break;
-
 		case 'String':
 			if (param.length > 0) {
 				flag = true;
 			}
 			break;
-
 		case 'Number':
 			// Object.prototype.toString.call(NaN)
 			// "[object Number]"
 			flag = true;
 			break;
-
 		case 'Object':
 			// 判断对象是否为空
 			if (Object.keys(param).length > 0) {

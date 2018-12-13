@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-21 15:51:49 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-31 16:14:55
+ * @Last Modified time: 2018-12-12 16:29:26
  * @Describe: 无
  */
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
@@ -23,7 +23,7 @@ function* fetchData1(action) {
 	};
 	try {
 		const api = () =>
-			utils.fetch({
+			utils.getJson({
 				url: config.WEATHER_BASE_PATH,
 				params: params,
 				method: 'GET'

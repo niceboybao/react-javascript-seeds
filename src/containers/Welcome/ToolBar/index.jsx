@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 11:23:43 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-30 16:08:36
+ * @Last Modified time: 2018-12-12 15:33:48
  * @Describe: 导航条 
  */
 import React from 'react';
@@ -25,9 +25,12 @@ export default class ToolBar extends React.Component {
 					<span>&nbsp;Baldwin</span>
 				</div>
 				<div className={style.right}>
-					<a href="https://juejin.im/user/58ec89745c497d0062c633f7/posts" target="view_frame">
+					{/**<a href="https://juejin.im/user/58ec89745c497d0062c633f7/posts" target="view_frame">
 						<div className={style.item}>我的文章</div>
-					</a>
+					</a> */}
+					<Link to={'/article'}>
+						<div className={style.item}>我的文章</div>
+					</Link>
 					<Link to={'/tag'}>
 						<div className={style.item}>技术标签</div>
 					</Link>
