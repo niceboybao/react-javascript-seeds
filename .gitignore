@@ -9,3 +9,4 @@
 /.cache-loader
 /docs/task.md
 /package.ts.json
+/config
