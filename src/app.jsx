@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-26 18:02:37
+ * @Last Modified time: 2018-12-15 17:54:30
  * @Describe: 工程入口文件
  */
 
@@ -66,16 +66,6 @@ console.log = (message, ...objs) => {
 		log.debug(message, ...objs);
 	}
 };
-
-// // js中关闭console.log日志的方法
-// window.isDebugger = false; //false为生产模式，true为调试模式
-// console.log = (function(oriLogFunc) {
-// 	return function(str) {
-// 		if (window.isDebugger) {
-// 			oriLogFunc.call(console, str);
-// 		}
-// 	};
-// })(console.log);
 
 // Create router basename
 // basename:路由所有位置的基本URL
