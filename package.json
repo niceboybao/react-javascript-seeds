@@ -3,14 +3,7 @@
 	"version": "0.0.0",
 	"description": "a react project base on webpack4.x",
 	"main": "app.jsx",
-	"keywords": [
-		"react",
-		"redux",
-		"saga",
-		"reselect",
-		"webpack",
-		"sass"
-	],
+	"keywords": [ "react", "redux", "saga", "reselect", "webpack", "sass" ],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf .cache-loader/* && rm -rf www/* && rm -rf react-javascript-seeds/*",
@@ -20,6 +13,7 @@
 		"de": "webpack-dev-server --config ./build/webpack.config.dev.js",
 		"dev": " cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.dev.js",
 		"prod": " cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.prod.js",
+		"prod_online": " cross-env NODE_ENV=production_online node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.prod.js",
 		"start": "npm run clean && npm run build && npm run dev",
 		"start-dev": "npm run clean && npm run build-dev && npm run dev",
 		"start-prod": "npm run clean && npm run build-prod && npm run prod",
