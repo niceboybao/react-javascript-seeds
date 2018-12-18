@@ -10,6 +10,7 @@
 		"build": "webpack --progress --colors",
 		"build-dev": "cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.dev.js",
 		"build-prod": "cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.prod.js",
+		"build-prod_online": "cross-env NODE_ENV=production_online node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config ./build/webpack.config.prod.js",
 		"de": "webpack-dev-server --config ./build/webpack.config.dev.js",
 		"dev": " cross-env NODE_ENV=development node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.dev.js",
 		"prod": " cross-env NODE_ENV=production node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --progress --color --config ./build/webpack.config.prod.js",
@@ -17,6 +18,7 @@
 		"start": "npm run clean && npm run build && npm run dev",
 		"start-dev": "npm run clean && npm run build-dev && npm run dev",
 		"start-prod": "npm run clean && npm run build-prod && npm run prod",
+		"start-prod_online": "npm run clean && npm run build-prod_online && npm run prod_online",
 		"open-stats": "node node_modules/.bin/webpack-bundle-analyzer stats.json"
 	},
 	"author": "guangwei.bao",
