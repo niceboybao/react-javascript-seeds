@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-08-30 20:09:25 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-20 10:16:55
+ * @Last Modified time: 2018-12-20 10:24:20
  * @Describe: webpack 配置文件
  */
 'use strict';
@@ -13,8 +13,8 @@ const NODE_ENV = process.env.NODE_ENV;
 
 // 工程打包到的文件夹名称
 // 部署到服务器上的时候，可以根据需求改变打包文件夹名称，一改全改
-let PACKAGE_PATH = 'react-javascript-seeds'; //开发环境 生产环境
-if (NODE_ENV === 'production_online') {
+let PACKAGE_PATH = 'www'; //开发环境 生产环境
+if (NODE_ENV === 'productions') {
 	PACKAGE_PATH = 'react-javascript-seeds'; // 线上环境
 }
 console.log('工程打包部署路径: ' + PACKAGE_PATH);
