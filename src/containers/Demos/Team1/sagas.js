@@ -23,6 +23,7 @@ import {
 } from 'redux-saga/effects';
 // 用于Node和Browserify的同构WHATWG Fetch API
 import fetch from 'isomorphic-fetch';
+import * as log from 'loglevel';
 
 import config from '../../../config.js';
 import { REQUESTDATA } from './constants';
@@ -33,15 +34,15 @@ function* fetchData(action) {
 		const response = yield call(fetch, config.FETCH_BASE_PATH + 'mock/test.json');
 		if (response.ok) {
 			const json = yield response.json();
-			console.log(' team1 requestDataSuccess');
+			log.debug(' team1 requestDataSuccess');
 			// put是saga对Redux中dispatch方法的一个封装
 			yield put(requestDataSuccess(json));
 		} else {
-			console.log('team1 requestDataError');
+			log.debug('team1 requestDataError');
 			yield put(requestDataError(response.status));
 		}
 	} catch (e) {
-		console.log('team1 requestDataFaild');
+		log.debug('team1 requestDataFaild');
 		yield put(requestDataError(e.message));
 	}
 }

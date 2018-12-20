@@ -9,6 +9,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as log from 'loglevel';
 
 import utils from '../../../utils';
 import style from './index.scss';
@@ -31,12 +32,12 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		//计数器+
 		counterPlusOne: () => {
-			console.log("call from 'mapDispatchToProps'");
+			log.debug("call from 'mapDispatchToProps'");
 			dispatch(increment(1));
 		},
 		//计数器-
 		counterMinusOne: () => {
-			console.log("call from 'mapDispatchToProps'");
+			log.debug("call from 'mapDispatchToProps'");
 			dispatch(decrement(1));
 		},
 		//初始化计数器
@@ -66,25 +67,25 @@ class Team1 extends React.Component {
 	}
 	// 设置默认的props，也可以用dufaultProps设置组件的默认属性。
 	//    getDefaultProps() {
-	//        console.log("Team1 component getDefaultProps");
+	//        log.debug("Team1 component getDefaultProps");
 	//    }
 	// 在使用es6的class语法时是没有这个钩子函数的，可以直接在constructor中定义this.state。此时可以访问this.props。
 	//    getInitialState() {
-	//        console.log("Team1 component getInitialState");
+	//        log.debug("Team1 component getInitialState");
 	//    }
 	// Team1组件初始化时调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state
 	componentWillMount() {
-		console.log('Team1 component componentWillMount');
+		log.debug('Team1 component componentWillMount');
 	}
 	// 组件渲染之后调用，可以通过this.getDOMNode()获取和操作dom节点，只调用一次
 	componentDidMount() {
-		console.log('Team1 component componentDidMount');
+		log.debug('Team1 component componentDidMount');
 		//获取接口数据
 		this.props.getData();
 	}
 	// 组件初始化时不调用，组件接受新的props时调用。
 	componentWillReceiveProps(nextPropsy) {
-		console.log('Team1 component componentWillReceivePorps');
+		log.debug('Team1 component componentWillReceivePorps');
 	}
 	/*
      * react性能优化非常重要的一环。组件接受新的state或者props时调用，我们可以设置在此对比前后两个props和state是否相同，
@@ -93,28 +94,28 @@ class Team1 extends React.Component {
      */
 	//组件接受新的state或者props时调用
 	shouldComponentUpdate(nextProps, nextState) {
-		console.log('Team1 component shouldComponentUpdate');
+		log.debug('Team1 component shouldComponentUpdate');
 		// 短路运算  &&->一false短路,||->一true短路
 		// if (this.props.counter !== nextProps.counter || this.state.name !== nextState.name) {
-		// 	console.log('dom改变了刷新');
+		// 	log.debug('dom改变了刷新');
 		// 	return true;
 		// } else {
-		// 	console.log('dom没改变不刷新');
+		// 	log.debug('dom没改变不刷新');
 		// 	return false;
 		// }
 		return true;
 	}
 	// 组件初始化时不调用，只有在组件将要更新时才调用，此时可以修改state
 	componentWillUpdate(nextProps, nextState) {
-		console.log('Team1 component componentWillUpdate');
+		log.debug('Team1 component componentWillUpdate');
 	}
 	// 组件初始化时不调用，组件更新完成后调用，此时可以获取dom节点。
 	componentDidUpdate() {
-		console.log('Team1 component componentDidUpdate');
+		log.debug('Team1 component componentDidUpdate');
 	}
 	// 组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
 	componentWillUnmount() {
-		console.log('Team1 component componentWillUnmount');
+		log.debug('Team1 component componentWillUnmount');
 	}
 
 	//初始化计时器方法
@@ -129,7 +130,7 @@ class Team1 extends React.Component {
 				name: '已改变state'
 			},
 			() => {
-				console.log('改变state: ' + this.state.name);
+				log.debug('改变state: ' + this.state.name);
 			}
 		);
 	}
@@ -137,7 +138,7 @@ class Team1 extends React.Component {
 	render() {
 		//react最重要的步骤，创建虚拟dom，进行diff算法，更新dom树都在此进行。此时就不能更改state了
 		const { counter, counterPlusOne, counterMinusOne, data } = this.props;
-		console.log('Team1 render');
+		log.debug('Team1 render');
 		return (
 			<div id={style.team1}>
 				<div className={style.content1} id="content_display_area">

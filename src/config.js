@@ -2,13 +2,13 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 11:10:29 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-26 18:02:42
+ * @Last Modified time: 2018-12-18 18:08:34
  * @Describe: 项目开发配置文件
  */
 'use strict';
 
 const projectEnv = process.env.NODE_ENV;
-// console.log('projectEnv: ' + process.env.NODE_ENV);
+// log.debug('projectEnv: ' + process.env.NODE_ENV);
 
 // import webpack config resource
 const CommonConfig = require('../config/');
@@ -37,7 +37,7 @@ if (projectEnv === 'development') {
 // 服务器环境
 if (projectEnv === 'production') {
 	BUILD_NUMBER = '0.0.1'; // 版本号
-	FETCH_BASE_PATH = `https://niceboybao.com/${CommonConfig.PACKAGE_PATH}/`; //基础接口前缀
+	FETCH_BASE_PATH = 'https://niceboybao.com/react-javascript-seeds/'; //基础接口前缀
 	FETCH_NOTICE_PATH = ''; //额外接口前缀
 	BAIDU_LOCATION_KEY = '3OhLnfWO3PVKyAUNyZjLXkMjf7daTku1'; //百度地理定位api key(niceboybao.cn)
 	WEATHER_BASE_PATH = 'https://free-api.heweather.com/v5/weather';

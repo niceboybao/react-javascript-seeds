@@ -10,6 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Icon, Popover } from 'antd';
+import * as log from 'loglevel';
 
 import utils from '../../utils';
 import style from './index.scss';
@@ -37,14 +38,14 @@ export default class Settings extends React.Component {
 				show: !prevState.show
 			}),
 			() => {
-				console.log('state show updated');
+				log.debug('state show updated');
 			}
 		);
 	}
 
 	// 全局改变字体大小
 	changeFontSize(type) {
-		console.log('全局改变字体大小: ' + type);
+		log.debug('全局改变字体大小: ' + type);
 
 		let fontSize = '16px';
 		if (type == 0) {

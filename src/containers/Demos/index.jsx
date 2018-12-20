@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { createRoutes } from '../../store/router';
+import * as log from 'loglevel';
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
@@ -77,7 +78,7 @@ class Demo extends React.Component {
 	};
 
 	onCollapse = (collapsed) => {
-		console.log(collapsed);
+		log.debug(collapsed);
 		this.setState({ collapsed });
 	};
 

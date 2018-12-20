@@ -3,7 +3,14 @@
 	"version": "0.0.0",
 	"description": "a react project base on webpack4.x",
 	"main": "app.jsx",
-	"keywords": [ "react", "redux", "saga", "reselect", "webpack", "sass" ],
+	"keywords": [
+		"react",
+		"redux",
+		"saga",
+		"reselect",
+		"webpack",
+		"sass"
+	],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rimraf .cache-loader/* && rm -rf www/* && rm -rf react-javascript-seeds/*",
@@ -38,6 +45,7 @@
 		"css-loader": "^1.0.0",
 		"eslint-loader": "^2.1.0",
 		"file-loader": "^2.0.0",
+		"fingerprintjs2": "^1.8.6",
 		"happypack": "^5.0.0",
 		"html-loader": "^0.5.5",
 		"html-webpack-plugin": "^3.2.0",

@@ -8,6 +8,7 @@
 import { take, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
 // 用于Node和Browserify的同构WHATWG Fetch API
 // import fetch from 'isomorphic-fetch';
+import * as log from 'loglevel';
 import utils from '../../utils';
 import config from '../../config.js';
 
@@ -30,11 +31,11 @@ function* fetchData1(action) {
 			});
 		const response = yield call(api);
 		const json = response.HeWeather5[0];
-		console.log(' welcome getWeatherSuccess');
+		log.debug(' welcome getWeatherSuccess');
 		// put是saga对Redux中dispatch方法的一个封装
 		yield put(getWeatherSuccess(json));
 	} catch (e) {
-		console.log('welcome getWeatherFaild');
+		log.debug('welcome getWeatherFaild');
 		yield put(getWeatherError(e.message));
 	}
 }

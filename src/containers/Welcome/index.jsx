@@ -9,6 +9,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Icon, Popover } from 'antd';
+import * as log from 'loglevel';
 
 import utils from '../../utils';
 import style from './index.scss';
@@ -65,7 +66,7 @@ class Welcome extends React.Component {
 		let BMap = window.BMap; //取出window中的BMap对象
 		let myCity = new BMap.LocalCity();
 		myCity.get((result) => {
-			console.log('城市名称: ' + result.name); //城市名称
+			log.debug('城市名称: ' + result.name); //城市名称
 			// 保存地理位置到数据流
 			this.props.getLocationData(result);
 			// 调用天气API
@@ -86,7 +87,7 @@ class Welcome extends React.Component {
 				let mk = new BMap.Marker(r.point);
 				map.addOverlay(mk);
 				map.panTo(r.point);
-				console.log('城市名称: ' + r.address.province + ' ' + r.address.city); //城市名称
+				log.debug('城市名称: ' + r.address.province + ' ' + r.address.city); //城市名称
 				// 保存地理位置到数据流
 				_this.props.getLocationData(r.address);
 				// 调用天气API

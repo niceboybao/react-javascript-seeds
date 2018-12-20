@@ -10,6 +10,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import * as log from 'loglevel';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import utils from '../../../utils';
 
@@ -25,7 +26,7 @@ export default class CopyText extends React.Component {
 	}
 
 	onCopy() {
-		console.log('onCopy');
+		log.debug('onCopy');
 	}
 	copyButton() {
 		utils.Toast.success('复制成功！');

@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-05 20:10:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-15 17:54:30
+ * @Last Modified time: 2018-12-18 18:09:54
  * @Describe: 工程入口文件
  */
 
@@ -53,7 +53,6 @@ if (process.env.NODE_ENV === 'production') {
 	log.debug('process.env.NODE_ENV = development');
 }
 
-// override console.log
 console.log = (message, ...objs) => {
 	let a = log.getLevel();
 	let b = log.levels.DEBUG;

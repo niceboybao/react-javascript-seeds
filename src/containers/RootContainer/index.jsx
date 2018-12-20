@@ -9,11 +9,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { connect, MapStateToProps } from 'react-redux';
 import { createRoutes } from '../../store/router';
+import * as log from 'loglevel';
 
 export default class RootContainer extends Component {
 	constructor(props) {
 		super(props);
-		console.log('RootContainer');
+		log.debug('RootContainer');
 
 		this.state = {};
 		this.allRoutes = createRoutes();

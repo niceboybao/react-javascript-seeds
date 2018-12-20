@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import * as log from 'loglevel';
 
 import config from '../../../config.js';
 import utils from '../../../utils';
@@ -26,7 +27,7 @@ export default class Iframe extends React.Component {
 	componentDidMount() {
 		window.addEventListener('message', this.clickHandler.bind(this), false);
 		// setTimeout(() => {
-		//     console.log('setTimeout');
+		//     log.debug('setTimeout');
 		// 	window.postMessage({ a: 1 },'http://localhost:8384/www/index.html');
 		// }, 1000);
 	}

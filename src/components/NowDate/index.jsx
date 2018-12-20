@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import * as log from 'loglevel';
 // import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { Icon, Popover } from 'antd';
@@ -33,7 +34,7 @@ export default class NowDate extends React.Component {
 
 	// 组件将要卸载时调用，一些事件监听和定时器需要在此时清除。
 	componentWillUnmount() {
-		console.log('NowDate component componentWillUnmount');
+		log.debug('NowDate component componentWillUnmount');
 		// clear intervalTime
 		clearInterval(this.intervalTime);
 	}

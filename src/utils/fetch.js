@@ -8,6 +8,7 @@
 'use strict';
 
 import 'isomorphic-fetch';
+import * as log from 'loglevel';
 import { objToString } from './params.js';
 let isText = false; //接口数据默认为json格式
 // 接口状态检测
@@ -30,7 +31,7 @@ const parseJSON = function(response) {
 		} else {
 			return response.json();
 		}
-		console.log('fetch success');
+		log.debug('fetch success');
 	} else {
 		fetchError(response.ok);
 	}
@@ -130,7 +131,7 @@ export function _postJson(obj) {
 //     // 注： 这里的 resp.json() 返回值不是 js对象，通过 then 后才会得到 js 对象
 //     throw New Error ('false of json');
 // }).then(json => {
-//     console.log(json);
+//     log.debug(json);
 // }).catch(error => {
 //     consolr.log(error);
 // })

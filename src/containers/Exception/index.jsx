@@ -24,7 +24,7 @@ export default class Exception extends React.Component {
 		utils.burry(this.constructorConfig().title);
 	}
 	constructorConfig() {
-		console.log(this.props.match.params);
+		log.debug(this.props.match.params);
 		let configPage = typeConfig['404'];
 		if (this.props.match.params) {
 			if (this.props.match.params.id) {

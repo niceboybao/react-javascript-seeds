@@ -9,6 +9,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 // 用于Node和Browserify的同构WHATWG Fetch API
 import fetch from 'isomorphic-fetch';
+import * as log from 'loglevel';
 
 import config from '../../config.js';
 import { GETMENULIST } from './constants';
@@ -19,15 +20,15 @@ function* fetchData(action) {
 		const response = yield call(fetch, config.FETCH_BASE_PATH + 'mock/demo/menuList.json');
 		if (response.ok) {
 			const json = yield response.json();
-			console.log(' demo getMenuListSuccess');
+			log.debug(' demo getMenuListSuccess');
 			// put是saga对Redux中dispatch方法的一个封装
 			yield put(getMenuListSuccess(json));
 		} else {
-			console.log('demo getMenuListError');
+			log.debug('demo getMenuListError');
 			yield put(getMenuListError(response.status));
 		}
 	} catch (e) {
-		console.log('demo getMenuListFaild');
+		log.debug('demo getMenuListFaild');
 		yield put(getMenuListError(e.message));
 	}
 }

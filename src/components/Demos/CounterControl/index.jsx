@@ -8,6 +8,7 @@
 import * as React from 'react';
 import { Store } from 'redux';
 import { Button, Icon } from 'antd';
+import * as log from 'loglevel';
 
 export class CounterControl extends React.Component {
 	constructor(props) {
@@ -18,12 +19,12 @@ export class CounterControl extends React.Component {
 	}
 
 	increase() {
-		console.log("will call 'onPlusClick' props function.");
+		log.debug("will call 'onPlusClick' props function.");
 		this.props.onPlusClick();
 	}
 
 	decrease() {
-		console.log("will call 'onMinusClick' props function.");
+		log.debug("will call 'onMinusClick' props function.");
 		this.props.onMinusClick();
 	}
 
