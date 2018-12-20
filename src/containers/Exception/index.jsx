@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-10 15:38:44 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-29 16:44:13
+ * @Last Modified time: 2018-12-20 10:46:53
  * @Describe: 路由匹配不上的404页面
  */
 
@@ -10,6 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import * as log from 'loglevel';
 
 import typeConfig from './typeConfig.js';
 import utils from '../../utils';
