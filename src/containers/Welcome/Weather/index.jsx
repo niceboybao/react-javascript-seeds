@@ -2,13 +2,14 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:38:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-11 17:01:29
+ * @Last Modified time: 2018-12-20 10:51:56
  * @Describe: 天气组件
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as log from 'loglevel';
 
 import utils from '../../../utils';
 import style from './index.scss';

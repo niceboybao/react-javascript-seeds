@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-30 17:12:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-21 17:04:49
+ * @Last Modified time: 2018-12-20 10:50:33
  * @Describe: 实现一个react 文字拷贝效果
  * https://github.com/nkbt/react-copy-to-clipboard
  */
@@ -11,6 +11,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import * as log from 'loglevel';
+
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import utils from '../../../utils';
 

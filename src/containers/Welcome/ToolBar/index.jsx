@@ -2,12 +2,13 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 11:23:43 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-12 15:33:48
+ * @Last Modified time: 2018-12-20 10:51:50
  * @Describe: 导航条 
  */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as log from 'loglevel';
 
 import utils from '../../../utils';
 import style from './index.scss';

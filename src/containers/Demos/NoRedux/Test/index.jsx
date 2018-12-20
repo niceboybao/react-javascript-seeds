@@ -2,13 +2,13 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-25 10:13:13 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 21:04:18
+ * @Last Modified time: 2018-12-20 10:51:04
  * @Describe: 
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
-
+import * as log from 'loglevel';
 export default class Test extends React.Component {
 	constructor(props) {
 		super(props);

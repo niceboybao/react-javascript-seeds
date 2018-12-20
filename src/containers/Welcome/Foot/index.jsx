@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-19 18:38:47 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-09-21 15:49:03
+ * @Last Modified time: 2018-12-20 10:51:40
  * @Describe: 首页底部
  */
 
@@ -10,6 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Icon, Popover } from 'antd';
+import * as log from 'loglevel';
 
 import utils from '../../../utils';
 import style from './index.scss';

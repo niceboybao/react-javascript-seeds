@@ -2,13 +2,14 @@
  * @Author: guangwei.bao 
  * @Date: 2018-10-29 17:48:12 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-10-30 17:20:22
+ * @Last Modified time: 2018-12-20 10:50:50
  * @Describe: 连接转化成二维码并能成功保存(Img图片)
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
 const QRCode = require('qrcode.react');
+import * as log from 'loglevel';
 
 import { Button } from 'antd';
 import utils from '../../../utils';

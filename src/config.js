@@ -8,7 +8,7 @@
 'use strict';
 
 const projectEnv = process.env.NODE_ENV;
-// log.debug('projectEnv: ' + process.env.NODE_ENV);
+// console.log('projectEnv: ' + process.env.NODE_ENV);
 
 // import webpack config resource
 const CommonConfig = require('../config/');

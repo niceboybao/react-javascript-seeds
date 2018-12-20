@@ -2,12 +2,13 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-18 15:48:02 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-13 09:53:06
+ * @Last Modified time: 2018-12-20 10:52:09
  * @Describe: 我的文章页面
  */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as log from 'loglevel';
 
 let myMarked = require('marked'); // markdown文档解析插件
 let highlight = require('highlight.js'); // highlight代码高亮

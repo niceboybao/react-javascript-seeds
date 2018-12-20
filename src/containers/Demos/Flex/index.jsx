@@ -2,12 +2,13 @@
  * @Author: guangwei.bao 
  * @Date: 2018-11-26 11:25:51 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-11-26 16:47:27
+ * @Last Modified time: 2018-12-20 10:50:39
  * @Describe: flex布局实例
  */
 
 import React from 'react';
 import { connect } from 'react-redux';
+import * as log from 'loglevel';
 
 import { Divider } from 'antd';
 import utils from '../../../utils';

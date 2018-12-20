@@ -10,6 +10,7 @@
 import 'react-hot-loader/patch';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as log from 'loglevel';
 
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import { Provider, connect } from 'react-redux';
@@ -18,7 +19,7 @@ import { AppContainer } from 'react-hot-loader';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
-import * as log from 'loglevel';
+
 
 // import components
 import createReducer from './store/reducers';

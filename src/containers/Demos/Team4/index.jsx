@@ -2,7 +2,7 @@
  * @Author: guangwei.bao 
  * @Date: 2018-09-30 17:12:56 
  * @Last Modified by: guangwei.bao
- * @Last Modified time: 2018-12-19 14:23:49
+ * @Last Modified time: 2018-12-20 10:51:24
  * @Describe: 有个想不起来的经典案例可以放着呢
  */
 
@@ -10,6 +10,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import * as log from 'loglevel';
+
 import Fingerprint2 from 'fingerprintjs2';
 
 import utils from '../../../utils';
